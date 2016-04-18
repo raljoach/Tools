@@ -32,7 +32,7 @@ namespace CareerCupToolkit
         static void Main(string[] args)
         {
             //Prototype();
-            ShowMenu(MenuType.Sites);
+            ShowMenu(MenuType.Sites,MenuType.None,null);
             Console.WriteLine("Program has ended. Hit any key to exit.");
             Console.ReadKey();
         }
@@ -45,7 +45,7 @@ namespace CareerCupToolkit
                 "O(", "space", "cubic", "runtime", "time", "n^", "optim", "tree",
                 "graph", "recursion", "sort", "search"};
 
-        private static Option[] ShowMenu(MenuType menu, MenuType? pMenu = null, MenuItem prevMenu = null)
+        private static Option[] ShowMenu(MenuType menu, MenuType pMenu, MenuItem prevMenu)
         {
             var temp = currentMenu;
             currentMenu = menu;
@@ -57,11 +57,11 @@ namespace CareerCupToolkit
                         new Option(
                             "CareerCup",
                             "c",
-                            () => { ShowMenu(MenuType.CareerCup); }),
+                            () => { ShowMenu(MenuType.CareerCup,menu,null); }),
                         new Option(
                             "GlassDoor",
                             "g",
-                            () => { ShowMenu(MenuType.GlassDoor); }));
+                            () => { ShowMenu(MenuType.GlassDoor,menu,null); }));
                 //break;
                 case MenuType.CareerCup:
                     return ShowOptions(
@@ -69,12 +69,12 @@ namespace CareerCupToolkit
                         new Option(
                             "Filter by company",
                             "c",
-                            () => { ShowMenu(MenuType.Company, menu); }),
+                            () => { ShowMenu(MenuType.Company, menu, new MenuItem(menu, pMenu, prevMenu)); }),
 
                         menu == MenuType.CareerCup ? new Option(
                             "Filter by topic",
                             "t",
-                            () => { ShowMenu(MenuType.Topic, menu); }):null,                        
+                            () => { ShowMenu(MenuType.Topic, menu, new MenuItem(menu, pMenu, prevMenu)); }):null,                        
                         new Option(
                             "Filter by search terms",
                             "k",
@@ -88,7 +88,7 @@ namespace CareerCupToolkit
                             "s",
                             () =>
                             {
-                                IWebDriver driver = new PhantomJSDriver();
+                                IWebDriver driver = InitPhantomJS();
                                 try
                                 {
                                     DisplayQuestions(driver, selectedCompany, selectedTopic, true);
@@ -107,16 +107,24 @@ namespace CareerCupToolkit
                         new Option(
                             "Add search terms",
                             "a",
-                            () => { AddSearchTerms(); }),
+                            () => {
+                                AddSearchTerms();
+                                ShowMenu(prevMenu);
+                            }),
                         new Option(
                             "Clear search terms",
                             "c",
-                            () => { ClearSearchTerms(); }),
+                            () => {
+                                ClearSearchTerms();
+                                ShowMenu(prevMenu);
+                            }),
                         new Option(
                             "Use Standard list of search terms",
                             "s",
-                            () => { AddSearchTerms(standardKeyWords); }
-                            ),
+                            () => {
+                                AddSearchTerms(standardKeyWords);
+                                ShowMenu(prevMenu);
+                            }),
                         PreviousMenu(prevMenu));
                 //break;
                 case MenuType.Topic:
@@ -125,7 +133,10 @@ namespace CareerCupToolkit
                         new Option(
                             "Select topic",
                             "",
-                            () => { ShowCareerCupTopics(); }),
+                            () => {
+                                ShowCareerCupTopics();
+                                ShowMenu(prevMenu);
+                            }),
                         PreviousMenu(prevMenu)
                         );
                 //break;
@@ -135,7 +146,10 @@ namespace CareerCupToolkit
                         new Option(
                             "Select company",
                             "",
-                            () => { ShowCareerCupCompanies(); }),
+                            () => {
+                                ShowCareerCupCompanies();
+                                ShowMenu(prevMenu);
+                            }),
                         PreviousMenu(prevMenu)
                         );
                 //break;
@@ -175,9 +189,9 @@ namespace CareerCupToolkit
             while (!valid)
             {
                 ShowOptions("Choose from one of the following companies", companies.ToArray());
-                Console.WriteLine();
-                Console.Write(":");
+                Console.Write(":");                
                 index = int.Parse(Console.ReadLine()) - 1;
+                Console.WriteLine();
                 if (index < 0 || index > companies.Count) { Console.WriteLine(string.Format("Error: Invalid choice '{0}'", index + 1)); continue; }
                 valid = true;
             }
@@ -281,7 +295,10 @@ namespace CareerCupToolkit
             service.LogFile = @".\phantom.log";
             service.SuppressInitialDiagnosticInformation = true;
             int firstRow = Console.CursorTop;
+            //var tmp = Console.Out;
+            //Console.SetOut(new StringWriter(new StringBuilder()));
             PhantomJSDriver driver = new PhantomJSDriver(service);
+            //Console.SetOut(tmp);
             ClearConsole(firstRow);
             
             /* DOESN'T CLEAR CONSOLE!!!!! AGRAVATING!!!!!
@@ -504,30 +521,61 @@ namespace CareerCupToolkit
 
         private static void DisplayQuestions(IWebDriver driver, string company, string topic, bool pause=true)
         {
-            var questionsGrid = Search(driver, company, topic);
-            Print(questionsGrid,pause);
+            var currentPage = 1;
+            var pages = Search(driver, currentPage, company, topic);
+            foreach (var page in pages)
+            {
+                Print(page.PageNumber, page.Result, pause);
+            }
         }
 
         private static void DisplayQuestions(IWebDriver driver, string topic, bool pause=true)
         {
-            var questionsGrid = Search(driver, topic);
-            Print(questionsGrid,pause);
+            var currentPage = 1;
+            var pages = Search(driver, currentPage, topic);
+            foreach (var page in pages)
+            {
+                Print(page.PageNumber, page.Result, pause);
+            }
         }
 
         private static void DisplayQuestions(IWebDriver driver, Action setOptions, bool pause = true)
         {
-            var questionsGrid = Search(driver, setOptions);
-            Print(questionsGrid,pause);
+            var currentPage = 1;
+            var pages = Search(driver, currentPage, setOptions);
+            foreach (var page in pages)
+            {
+                Print(page.PageNumber,page.Result, pause);
+            }
         }
 
-        private static void Print(ReadOnlyCollection<IWebElement> questionsGrid, bool pause=true)
+        private static void Print(int pageNum, ReadOnlyCollection<IWebElement> questionsGrid, bool pause=true)
         {
             //var links = new List<IWebElement>();
+            var qNum = 0;
             foreach (var qElem in questionsGrid)
             {
+                ++qNum;
                 string question = ExtractQuestion(qElem);
-                Console.WriteLine("Question:");
+                var found = true;
+                if (keywords != null && keywords.Count>0)
+                {
+                    found = false;
+                    foreach(var k in keywords)
+                    {
+                        if (question.Contains(k))
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if (!found) { continue; }
+                Console.WriteLine("".PadLeft(150, '-'));
+                Console.WriteLine("Question {0}-{1}:",pageNum,qNum);
+                Console.WriteLine("".PadLeft(15, '-'));
                 Console.WriteLine(question);
+                Console.WriteLine("".PadLeft(150, '-'));
                 Console.WriteLine();
 
                 if(pause)
@@ -536,7 +584,7 @@ namespace CareerCupToolkit
                     Console.ReadLine();
                 }
             }
-            Console.WriteLine("No more questions");
+            //Console.WriteLine("No more questions");
         }
 
         private static string ExtractQuestion(IWebElement qElem)
@@ -549,43 +597,153 @@ namespace CareerCupToolkit
             return question;
         }
 
-        private static ReadOnlyCollection<IWebElement> Search(IWebDriver driver, string company, string topic)
+        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, string company, string topic)
         {
-            return Search(driver, () => {
+            return Search(driver, currentPage, () => {
                 SelectCompany(driver, company);
                 SelectTopic(driver, topic);
             });
         }
 
-        private static ReadOnlyCollection<IWebElement> Search(IWebDriver driver, string topic)
+        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, string topic)
         {
-            return Search(driver, () => {
+            return Search(driver, currentPage, () => {
                 SelectTopic(driver, topic);
             });
         }
 
-        private static ReadOnlyCollection<IWebElement> Search(IWebDriver driver, Action setOptions)
+        public class PageResult
+        {
+            public PageResult(int pageNum, ReadOnlyCollection<IWebElement> result)
+            {
+                this.PageNumber = pageNum;
+                this.Result = result;
+            }
+            public ReadOnlyCollection<IWebElement> Result { get; set; }
+            public int PageNumber { get; set; }
+        }
+
+        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, Action setOptions)
         {
             driver.Navigate().GoToUrl(website);
             IWebElement questionsLink = driver.FindElement(By.LinkText("Questions"));
             questionsLink.Click();
             setOptions();
-
             driver.FindElement(By.XPath("//input[@value='Go']")).Click();
 
-
-            var questionsGrid = driver.FindElements(By.ClassName("question"));
-            return questionsGrid;
+            //int currentPage = 1;
+            while (true)
+            {
+                Console.WriteLine("".PadLeft(150, 'x'));
+                Console.WriteLine("Page: {0}", currentPage);
+                Console.WriteLine("".PadLeft(150, 'x'));
+                Console.WriteLine();
+                yield return GetQuestions(driver,currentPage);
+                IWebElement page = GetNextPage(driver, currentPage++);
+                if (page == null) { break; }
+                page.Click();
+            }            
         }
 
+        private static IWebElement GetNextPage(IWebDriver driver, int currentPage)
+        {
+            var pagesPanels = driver.FindElements(By.ClassName("pageListSection"));
+
+            foreach (var panel in pagesPanels)
+            {
+                var label = panel.FindElement(By.ClassName("pageListSectionLabel"));
+                if (!label.Text.ToLower().Trim().StartsWith("page:")) { continue; }
+                var content = panel.FindElement(By.ClassName("pageListSectionContent"));
+                var pages = content.FindElements(By.TagName("a"));
+                foreach (var p in pages)
+                {
+                    var pageStr = p.Text.Trim();
+                    if(pageStr=="<<" || pageStr== "«") { continue; }
+                    if (pageStr == ">>" || pageStr=="»")
+                    {
+                        return p;                        
+                    }
+                    else
+                    {
+                        var pageNum = int.Parse(pageStr);
+                        if (pageNum > currentPage)
+                        {
+                            return p;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        /*
+        private static IEnumerable<PageResult> Next(IWebDriver driver, int currentPage)
+        {
+            yield return GetQuestions(driver, currentPage);
+            foreach (var m in VisitPages(driver, currentPage))
+            {
+                yield return m;
+            }
+        }
+        */
+
+        private static PageResult GetQuestions(IWebDriver driver,int pageNum)
+        {
+            var questionsGrid = driver.FindElements(By.ClassName("question"));
+            return new PageResult(pageNum,questionsGrid);
+        }
+        /*
+        private static IEnumerable<ReadOnlyCollection<IWebElement>> VisitPages(IWebDriver driver,int currentPage)
+        {
+            var pagesPanels = driver.FindElements(By.ClassName("pageListSection"));
+
+            foreach (var panel in pagesPanels)
+            {
+                var label = panel.FindElement(By.ClassName("pageListSectionLabel"));
+                if (!label.Text.ToLower().Trim().StartsWith("page:")) { continue; }
+                var content = panel.FindElement(By.ClassName("pageListSectionContent"));
+                var pages = content.FindElements(By.TagName("a"));
+                foreach (var p in pages)
+                {
+                    var pageStr = p.Text.Trim();
+                    if (pageStr == ">>")
+                    {
+                        p.Click();
+
+                        foreach(var m in Next(driver,currentPage+1))
+                        {
+                            yield return m;
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        var pageNum = int.Parse(pageStr);
+                        if (pageNum > currentPage)
+                        {                           
+                            p.Click();
+                            foreach (var m in Next(driver, pageNum))
+                            {
+                                yield return m;
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    */
         private static void SelectTopic(IWebDriver driver, string topic)
         {
+            if(string.IsNullOrWhiteSpace(topic)) { return; }
             var topicSelect = new SelectElement(driver.FindElement(By.Id("topic")));
             topicSelect.SelectByText(topic);
         }
 
         private static void SelectCompany(IWebDriver driver, string company)
         {
+            if (string.IsNullOrWhiteSpace(company)) { return; }
             var companySelect = new SelectElement(driver.FindElement(By.Id("company")));
             companySelect.SelectByText(company);
         }

@@ -2,7 +2,7 @@
 {
     internal class MenuItem
     {
-        public MenuItem(MenuType name, MenuType? parent, MenuItem previous)
+        public MenuItem(MenuType name, MenuType parent, MenuItem previous)
         {
             this.Name = name;
             this.Parent = parent;
@@ -10,7 +10,7 @@
         }
 
         public MenuType Name { get; internal set; }
-        public MenuType? Parent { get; internal set; }
+        public MenuType Parent { get; internal set; }
         public MenuItem Previous { get; internal set; }
     }
 }
