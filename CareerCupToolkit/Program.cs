@@ -104,14 +104,14 @@ namespace CareerCupToolkit
                             }),
                         //new Option("Set Help","h"),
                         new Option(
-                            "Search",
+                            "Begin Search",
                             "s",
                             () =>
                             {
                                 IWebDriver driver = InitPhantomJS();
                                 try
                                 {
-                                    DisplayQuestions(driver, selectedCompany, selectedTopic, true);
+                                    DisplayQuestions(driver, selectedCompany, selectedTopic);
                                 }
                                 finally
                                 {
@@ -673,37 +673,39 @@ namespace CareerCupToolkit
             }
         }
 
-        private static void DisplayQuestions(IWebDriver driver, string company, string topic, bool pause = true)
+        private static bool pause = true;
+        private static void DisplayQuestions(IWebDriver driver, string company, string topic)
         {
             var currentPage = 1;
             var pages = Search(driver, currentPage, company, topic);
             foreach (var page in pages)
             {
-                Print(page.PageNumber, page.Result, pause);
+                Print(page.PageNumber, page.Result);
             }
         }
 
-        private static void DisplayQuestions(IWebDriver driver, string topic, bool pause = true)
+        private static void DisplayQuestions(IWebDriver driver, string topic)
         {
             var currentPage = 1;
             var pages = Search(driver, currentPage, topic);
             foreach (var page in pages)
             {
-                Print(page.PageNumber, page.Result, pause);
+                Print(page.PageNumber, page.Result);
             }
         }
 
-        private static void DisplayQuestions(IWebDriver driver, Action setOptions, bool pause = true)
+        private static void DisplayQuestions(IWebDriver driver, Action setOptions)
         {
             var currentPage = 1;
             var pages = Search(driver, currentPage, setOptions);
             foreach (var page in pages)
             {
-                Print(page.PageNumber, page.Result, pause);
+                Print(page.PageNumber, page.Result);
             }
         }
 
-        private static void Print(int pageNum, ReadOnlyCollection<IWebElement> questionsGrid, bool pause = true)
+
+        private static void Print(int pageNum, ReadOnlyCollection<IWebElement> questionsGrid)
         {
             //var links = new List<IWebElement>();
             var qNum = 0;
@@ -777,6 +779,14 @@ namespace CareerCupToolkit
                         {
                                 // Print next question 
                                 return "Enter";
+                        })
+                        );
+
+                    list.Insert(0,
+                        new Option("Remove pause", "u",
+                        () =>
+                        {
+                            pause = false;
                         })
                         );
 
