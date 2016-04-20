@@ -11,10 +11,11 @@ using System.IO;
 using System.Drawing;
 using System.Collections.ObjectModel;
 using OpenQA.Selenium.Remote;
+using System.Threading;
 
 namespace CareerCupToolkit
 {
-    enum MenuType
+    public enum MenuType
     {
         None,
         Sites,
@@ -22,9 +23,25 @@ namespace CareerCupToolkit
         GlassDoor,
         Topic,
         Company,
-        Keywords
+        Keywords,
+        Custom,
+        Mode
     }
-    class Program
+    public class OptionsResult
+    {
+        public Option[] options;
+        public Dictionary<string, int> shortcutHash;
+        public Dictionary<int, int> indexHash;
+        internal string chosen;
+
+        public OptionsResult(Option[] options, Dictionary<string, int> shortcutHash, Dictionary<int, int> indexHash)
+        {
+            this.options = options;
+            this.shortcutHash = shortcutHash;
+            this.indexHash = indexHash;
+        }
+    }
+    public class Program
     {
         private static string careerCupSite = "https://careercup.com/";
         private static string website = careerCupSite;
@@ -32,55 +49,58 @@ namespace CareerCupToolkit
         static void Main(string[] args)
         {
             //Prototype();
-            ShowMenu(MenuType.Sites,MenuType.None,null);
+            ShowMenu(new Menu(MenuType.Sites, null));
             Console.WriteLine("Program has ended. Hit any key to exit.");
             Console.ReadKey();
         }
 
-        private static MenuType currentMenu = MenuType.None;
+        private static Menu currentMenu = null;
         private static HashSet<string> keywords = new HashSet<string>();
-        private static HashSet<string> standardKeyWords = 
+        private static HashSet<string> standardKeyWords =
             new HashSet<string>() {
                 "linear", "quadratic",
                 "O(", "space", "cubic", "runtime", "time", "n^", "optim", "tree",
                 "graph", "recursion", "sort", "search"};
 
-        private static Option[] ShowMenu(MenuType menu, MenuType pMenu, MenuItem prevMenu)
+        private static OptionsResult ShowMenu(Menu menu)
         {
+            var prevMenu = menu.Previous;
             var temp = currentMenu;
             currentMenu = menu;
-            switch (menu)
+            switch (menu.MenuType)
             {
+                case MenuType.Custom:
+                    return (menu as CustomMenu).Show();
                 case MenuType.Sites:
                     return ShowOptions(
                         "Select a site to search for questions:",
                         new Option(
                             "CareerCup",
                             "c",
-                            () => { ShowMenu(MenuType.CareerCup,menu,null); }),
+                            () => { ShowMenu(new Menu(MenuType.CareerCup, menu)); }),
                         new Option(
                             "GlassDoor",
                             "g",
-                            () => { ShowMenu(MenuType.GlassDoor,menu,null); }));
-                //break;
+                            () => { ShowMenu(new Menu(MenuType.GlassDoor, menu)); }));
+                //break;                
                 case MenuType.CareerCup:
                     return ShowOptions(
                         "Select one of the following:",
                         new Option(
                             "Filter by company",
                             "c",
-                            () => { ShowMenu(MenuType.Company, menu, new MenuItem(menu, pMenu, prevMenu)); }),
+                            () => { ShowMenu(new Menu(MenuType.Company, menu)); }),
 
-                        menu == MenuType.CareerCup ? new Option(
+                        menu.MenuType == MenuType.CareerCup ? new Option(
                             "Filter by topic",
                             "t",
-                            () => { ShowMenu(MenuType.Topic, menu, new MenuItem(menu, pMenu, prevMenu)); }):null,                        
+                            () => { ShowMenu(new Menu(MenuType.Topic, menu)); }) : null,
                         new Option(
                             "Filter by search terms",
                             "k",
                             () =>
                             {
-                                ShowMenu(MenuType.Keywords, menu, new MenuItem(menu, pMenu, prevMenu));
+                                ShowMenu(new Menu(MenuType.Keywords, menu));
                             }),
                         //new Option("Set Help","h"),
                         new Option(
@@ -98,34 +118,16 @@ namespace CareerCupToolkit
                                     driver.Quit();
                                 }
                             }),
-                            PreviousMenu(prevMenu)
+                            PreviousMenu(menu.Previous)
                         );
                 //break;                
                 case MenuType.Keywords:
+                    List<Option> options = ListOptions(menu);
+                    options.Add(PreviousMenu(prevMenu));
                     return ShowOptions(
                         "Select one of the following:",
-                        new Option(
-                            "Add search terms",
-                            "a",
-                            () => {
-                                AddSearchTerms();
-                                ShowMenu(prevMenu);
-                            }),
-                        new Option(
-                            "Clear search terms",
-                            "c",
-                            () => {
-                                ClearSearchTerms();
-                                ShowMenu(prevMenu);
-                            }),
-                        new Option(
-                            "Use Standard list of search terms",
-                            "s",
-                            () => {
-                                AddSearchTerms(standardKeyWords);
-                                ShowMenu(prevMenu);
-                            }),
-                        PreviousMenu(prevMenu));
+                        options.ToArray()
+                        );
                 //break;
                 case MenuType.Topic:
                     return ShowOptions(
@@ -133,7 +135,8 @@ namespace CareerCupToolkit
                         new Option(
                             "Select topic",
                             "",
-                            () => {
+                            () =>
+                            {
                                 ShowCareerCupTopics();
                                 ShowMenu(prevMenu);
                             }),
@@ -146,7 +149,8 @@ namespace CareerCupToolkit
                         new Option(
                             "Select company",
                             "",
-                            () => {
+                            () =>
+                            {
                                 ShowCareerCupCompanies();
                                 ShowMenu(prevMenu);
                             }),
@@ -158,6 +162,60 @@ namespace CareerCupToolkit
                     throw new InvalidOperationException(
                         string.Format("Error: Unhandled menu type:{0}", menu));
             }
+        }
+
+        private static List<Option> ListOptions(Menu menu)
+        {
+            Menu prevMenu = menu.Previous;
+            List<Option> options = null;
+            switch (menu.MenuType)
+            {
+                case MenuType.Keywords:
+                    options =
+                        new List<Option>
+                        {
+                            new Option(
+                            "Add keyword/search terms",
+                            "a",
+                            () => {
+                                AddSearchTerms();
+                                ShowMenu(prevMenu);
+                            }),
+                            new Option(
+                            "Get keyword/search terms",
+                            "g",
+                            () => {
+                                GetSearchTerms();
+                                ShowMenu(prevMenu);
+                            }),
+                            new Option(
+                            "Remove keyword/search terms",
+                            "r",
+                            () => {
+                                RemoveSearchTerms();
+                                ShowMenu(prevMenu);
+                            }),
+                        new Option(
+                            "Clear all keyword/search terms",
+                            "c",
+                            () => {
+                                ClearSearchTerms();
+                                ShowMenu(prevMenu);
+                            }),
+                        new Option(
+                            "Use Standard list of keyword/search terms",
+                            "s",
+                            () => {
+                                AddSearchTerms(standardKeyWords);
+                                ShowMenu(prevMenu);
+                            })
+                        };
+                    break;
+                default:
+                    throw new InvalidOperationException(string.Format("Error: Invalid menu chosen '{0}'", menu));
+            }
+
+            return options;
         }
 
         private static string selectedTopic;
@@ -189,7 +247,7 @@ namespace CareerCupToolkit
             while (!valid)
             {
                 ShowOptions("Choose from one of the following companies", companies.ToArray());
-                Console.Write(":");                
+                Console.Write(":");
                 index = int.Parse(Console.ReadLine()) - 1;
                 Console.WriteLine();
                 if (index < 0 || index > companies.Count) { Console.WriteLine(string.Format("Error: Invalid choice '{0}'", index + 1)); continue; }
@@ -246,6 +304,7 @@ namespace CareerCupToolkit
         }
 
         private static List<string> careerCupCompanies = null;
+
         private static List<string> GetCareerCupCompanies()
         {
             if (careerCupCompanies == null)
@@ -290,7 +349,7 @@ namespace CareerCupToolkit
 
         private static PhantomJSDriver InitPhantomJS()
         {
-           
+
             PhantomJSDriverService service = PhantomJSDriverService.CreateDefaultService();
             service.LogFile = @".\phantom.log";
             service.SuppressInitialDiagnosticInformation = true;
@@ -300,7 +359,7 @@ namespace CareerCupToolkit
             PhantomJSDriver driver = new PhantomJSDriver(service);
             //Console.SetOut(tmp);
             ClearConsole(firstRow);
-            
+
             /* DOESN'T CLEAR CONSOLE!!!!! AGRAVATING!!!!!
             PhantomJSOptions ops = new PhantomJSOptions();
             var logTypes = new List<string>()
@@ -354,7 +413,7 @@ namespace CareerCupToolkit
             Console.SetCursorPosition(0, Console.CursorTop - count + 1);
         }
 
-        private static Option PreviousMenu(MenuItem prevMenu)
+        private static Option PreviousMenu(Menu prevMenu)
         {
             return new Option(
                     "Back to previous menu",
@@ -362,12 +421,14 @@ namespace CareerCupToolkit
                     () => { GoBack(prevMenu); });
         }
 
-        private static Option[] ShowMenu(MenuItem menu)
+        /*
+        private static OptionsResult ShowMenu(Menu menu)
         {
-            return ShowMenu(menu.Name, menu.Parent, menu.Previous);
+            return ShowMenu(menu.MenuType, menu.Previous);
         }
+        */
 
-        private static void GoBack(MenuItem prevMenu)
+        private static void GoBack(Menu prevMenu)
         {
             ShowMenu(prevMenu);
         }
@@ -377,9 +438,42 @@ namespace CareerCupToolkit
             keywords.Clear();
         }
 
+        private static void GetSearchTerms()
+        {
+            Console.WriteLine("Search terms:");
+            foreach (var k in keywords)
+            {
+                var quote = "\"{0}\"";
+                var quoteLabel = string.Format(quote, k);
+                Console.Write("{0} ", quoteLabel);
+            }
+            Console.WriteLine();
+        }
+        private static void RemoveSearchTerms()
+        {
+            string entry = Ask("Enter one or more search terms to remove:");
+            var tokens = entry.Split(' ', '\t');
+            RemoveSearchTerms(tokens);
+        }
+
+        private static void RemoveSearchTerms(string[] tokens)
+        {
+            if (tokens == null || tokens.Length == 0)
+            {
+                Console.WriteLine("No search terms were entered");
+            }
+            else
+            {
+                foreach (var t in tokens)
+                {
+                    keywords.Remove(t);
+                }
+            }
+        }
+
         private static void AddSearchTerms()
         {
-            string entry = Ask("Enter one or more search terms");
+            string entry = Ask("Enter one or more search terms to add:");
             var tokens = entry.Split(' ', '\t');
             AddSearchTerms(tokens);
         }
@@ -411,11 +505,18 @@ namespace CareerCupToolkit
             return response;
         }
 
-        private static Option[] ShowOptions(
+        private static OptionsResult ShowOptions(
             string sentence, params Option[] options)
         {
+            return ShowOptions(sentence, true, options);
+        }
+
+
+        private static OptionsResult ShowOptions(
+            string sentence, bool autoexecute, params Option[] options)
+        {
             var shortcutHash = new Dictionary<string, int>();
-            var indexHash = new Dictionary<int, int>();           
+            var indexHash = new Dictionary<int, int>();
             if (options == null || options.Length == 0)
             {
                 throw new InvalidOperationException(
@@ -434,60 +535,113 @@ namespace CareerCupToolkit
                 Console.WriteLine("{0}) {1}", opNum, thisOption);
             }
 
+            if (autoexecute)
+            {
+                return ExecuteOption(options, shortcutHash, indexHash);
+            }
+            else
+            {
+                return new OptionsResult(options, shortcutHash, indexHash);
+            }
+        }
 
+        private static OptionsResult ExecuteOption(Option[] options, Dictionary<string, int> shortcutHash, Dictionary<int, int> indexHash)
+        {
             bool valid = false;
             string chosen = null;
             while (!valid)
             {
-                Console.Write(":");
-                chosen = Console.ReadLine().Trim();
-                Console.WriteLine();
-                if (!ExecuteChoice(options, indexHash, shortcutHash, chosen)) {
+                chosen = GetUserInput();
+                if (!ExecuteChoice(options, indexHash, shortcutHash, chosen))
+                {
                     Console.WriteLine("Invalid selection '{0}'. Chose a number or shorcut.", chosen);
                     continue;
                 }
                 valid = true;
             }
 
-            return options;
+            return new OptionsResult(options, shortcutHash, indexHash);
         }
 
-        private static bool ExecuteChoice(Option[] options, Dictionary<int,int> indexHash, Dictionary<string,int> shortcutHash, string chosen)
+        private static string GetUserInput()
+        {
+            string text;
+            Console.Write(":");
+            text = Console.ReadLine().Trim();
+            Console.WriteLine();
+            return text;
+        }
+
+        private static bool ExecuteChoice(Option[] options, Dictionary<int, int> indexHash, Dictionary<string, int> shortcutHash, string chosen)
         {
             // See if the user entered a number
+            bool found = false;
+            var num = GetSelection(true, options, indexHash, shortcutHash, chosen, ref found);
+            //return false;
+            return found;
+        }
+
+        private static int GetSelection(bool autoexecute,
+            Option[] options, Dictionary<int, int> indexHash, Dictionary<string, int> shortcutHash, string chosen, ref bool found)
+        {
             int num;
-            if(int.TryParse(chosen,out num))
+            int opIndex = -1;
+            found = false;
+            if (int.TryParse(chosen, out num))
             {
-                if(num>0 && num<=options.Length)
+                if (num > 0 && num <= options.Length)
                 {
                     var index = indexHash[num];
-                    options[index].Execute();
-                    return true;
+                    if (autoexecute)
+                    {
+                        options[index].Execute();
+                    }
+                    //return true;
+                    found = true;
+                    opIndex = index;
                 }
                 else
                 {
-                    return false;
-                }
-            }
-            
-            // See if it's a shortcut that was entered by user
-            foreach(var key in shortcutHash.Keys)
-            {
-                if(key.ToLower()==Option.ENTER.ToLower())
-                {
-                    if(string.IsNullOrWhiteSpace(chosen))
-                    {
-                        options[shortcutHash[key]].Execute();
-                        return true;
-                    }
-                }
-                if (key == chosen) {
-                    options[shortcutHash[key]].Execute();
-                    return true;
+                    //return false;
                 }
             }
 
-            return false;
+            // See if it's a shortcut that was entered by user
+            if (!found)
+            {
+                foreach (var key in shortcutHash.Keys)
+                {
+                    if (key.ToLower() == Option.ENTER.ToLower())
+                    {
+                        if (string.IsNullOrWhiteSpace(chosen))
+                        {
+                            var index = shortcutHash[key];
+                            if (autoexecute)
+                            {
+                                options[index].Execute();
+                            }
+                            //return true;
+                            found = true;
+                            opIndex = index;
+                            break;
+                        }
+                    }
+                    if (key == chosen)
+                    {
+                        var index = shortcutHash[key];
+                        if (autoexecute)
+                        {
+                            options[index].Execute();
+                        }
+                        //return true;
+                        found = true;
+                        opIndex = index;
+                        break;
+                    }
+                }
+            }
+
+            return opIndex;
         }
 
         private static void ShowOptions(
@@ -519,7 +673,7 @@ namespace CareerCupToolkit
             }
         }
 
-        private static void DisplayQuestions(IWebDriver driver, string company, string topic, bool pause=true)
+        private static void DisplayQuestions(IWebDriver driver, string company, string topic, bool pause = true)
         {
             var currentPage = 1;
             var pages = Search(driver, currentPage, company, topic);
@@ -529,7 +683,7 @@ namespace CareerCupToolkit
             }
         }
 
-        private static void DisplayQuestions(IWebDriver driver, string topic, bool pause=true)
+        private static void DisplayQuestions(IWebDriver driver, string topic, bool pause = true)
         {
             var currentPage = 1;
             var pages = Search(driver, currentPage, topic);
@@ -545,11 +699,11 @@ namespace CareerCupToolkit
             var pages = Search(driver, currentPage, setOptions);
             foreach (var page in pages)
             {
-                Print(page.PageNumber,page.Result, pause);
+                Print(page.PageNumber, page.Result, pause);
             }
         }
 
-        private static void Print(int pageNum, ReadOnlyCollection<IWebElement> questionsGrid, bool pause=true)
+        private static void Print(int pageNum, ReadOnlyCollection<IWebElement> questionsGrid, bool pause = true)
         {
             //var links = new List<IWebElement>();
             var qNum = 0;
@@ -559,10 +713,10 @@ namespace CareerCupToolkit
                 string link;
                 string question = ExtractQuestion(qElem, out link);
                 var found = true;
-                if (keywords != null && keywords.Count>0)
+                if (keywords != null && keywords.Count > 0)
                 {
                     found = false;
-                    foreach(var k in keywords)
+                    foreach (var k in keywords)
                     {
                         if (question.Contains(k))
                         {
@@ -572,17 +726,61 @@ namespace CareerCupToolkit
                     }
                 }
                 if (!found) { continue; }
-                Console.WriteLine("".PadLeft(150, '-'));
-                Console.WriteLine("Question {0}-{1}: {2}",pageNum,qNum,link);
-                Console.WriteLine("".PadLeft(15, '-'));
+                /*
+                Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
+                Console.WriteLine("Question {0}-{1}: {2}", pageNum, qNum, link);
+                Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
                 Console.WriteLine(question);
-                Console.WriteLine("".PadLeft(150, '-'));
+                Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
                 Console.WriteLine();
-
-                if(pause)
+                */
+                var sb = new StringBuilder();
+                var width = Console.WindowWidth;
+                sb.AppendLine("".PadLeft(width, '-'));
+                sb.AppendLine(string.Format("Question {0}-{1}: {2}", pageNum, qNum, link));
+                sb.AppendLine("".PadLeft(width, '-'));
+                sb.AppendLine(question);
+                sb.AppendLine("".PadLeft(width, '-'));
+                sb.AppendLine();
+                var output = sb.ToString();
+                Console.WriteLine(output);
+                using (var sw = new StreamWriter(new FileStream("output.txt", FileMode.Append, FileAccess.Write)))
                 {
-                    Console.WriteLine("Hit enter to continue to next question...");
-                    Console.ReadLine();
+                    sw.Write(output);
+                    sw.Flush();
+                }
+
+                if (pause)
+                {
+                    //Console.WriteLine("Hit enter to continue to next question...");
+                    var list = new List<Option>();
+                    Func<OptionsResult> show = () =>
+                    {
+                        var r = ShowOptions(
+                        "",
+                        false,
+                        list.ToArray()
+                        );
+
+                        r.chosen = GetUserInput();
+                        var index = GetSelection(false, r.options, r.indexHash, r.shortcutHash, r.chosen, ref found);
+                        var selected = r.options[index];
+                        selected.Execute();
+                        return r;
+                    };
+                    var myMenu = new CustomMenu(list, show, null);
+                    list.AddRange(ListOptions(new Menu(MenuType.Keywords, myMenu)));
+
+                    list.Insert(0,
+                        new ValueOption<string>("Hit enter to continue to next question...", "",
+                        () =>
+                        {
+                                // Print next question 
+                                return "Enter";
+                        })
+                        );
+
+                    myMenu.Show();
                 }
             }
             //Console.WriteLine("No more questions");
@@ -601,7 +799,8 @@ namespace CareerCupToolkit
 
         private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, string company, string topic)
         {
-            return Search(driver, currentPage, () => {
+            return Search(driver, currentPage, () =>
+            {
                 SelectCompany(driver, company);
                 SelectTopic(driver, topic);
             });
@@ -609,7 +808,8 @@ namespace CareerCupToolkit
 
         private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, string topic)
         {
-            return Search(driver, currentPage, () => {
+            return Search(driver, currentPage, () =>
+            {
                 SelectTopic(driver, topic);
             });
         }
@@ -640,11 +840,11 @@ namespace CareerCupToolkit
                 Console.WriteLine("Page: {0}", currentPage);
                 Console.WriteLine("".PadLeft(150, 'x'));
                 Console.WriteLine();
-                yield return GetQuestions(driver,currentPage);
+                yield return GetQuestions(driver, currentPage);
                 IWebElement page = GetNextPage(driver, currentPage++);
                 if (page == null) { break; }
                 page.Click();
-            }            
+            }
         }
 
         private static IWebElement GetNextPage(IWebDriver driver, int currentPage)
@@ -660,10 +860,10 @@ namespace CareerCupToolkit
                 foreach (var p in pages)
                 {
                     var pageStr = p.Text.Trim();
-                    if(pageStr=="<<" || pageStr== "«") { continue; }
-                    if (pageStr == ">>" || pageStr=="»")
+                    if (pageStr == "<<" || pageStr == "«") { continue; }
+                    if (pageStr == ">>" || pageStr == "»")
                     {
-                        return p;                        
+                        return p;
                     }
                     else
                     {
@@ -689,10 +889,10 @@ namespace CareerCupToolkit
         }
         */
 
-        private static PageResult GetQuestions(IWebDriver driver,int pageNum)
+        private static PageResult GetQuestions(IWebDriver driver, int pageNum)
         {
             var questionsGrid = driver.FindElements(By.ClassName("question"));
-            return new PageResult(pageNum,questionsGrid);
+            return new PageResult(pageNum, questionsGrid);
         }
         /*
         private static IEnumerable<ReadOnlyCollection<IWebElement>> VisitPages(IWebDriver driver,int currentPage)
@@ -738,7 +938,7 @@ namespace CareerCupToolkit
     */
         private static void SelectTopic(IWebDriver driver, string topic)
         {
-            if(string.IsNullOrWhiteSpace(topic)) { return; }
+            if (string.IsNullOrWhiteSpace(topic)) { return; }
             var topicSelect = new SelectElement(driver.FindElement(By.Id("topic")));
             topicSelect.SelectByText(topic);
         }

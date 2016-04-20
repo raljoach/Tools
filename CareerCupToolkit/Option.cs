@@ -2,7 +2,7 @@
 
 namespace CareerCupToolkit
 {
-    internal class Option
+    public class Option
     {
         public static string ENTER = "Enter";
 
@@ -16,7 +16,7 @@ namespace CareerCupToolkit
         public int Id { get; internal set; }
         public string Description { get; internal set; }
         public string Shortcut { get; internal set; }
-        public Action Execute { get; internal set; }
+        public virtual Action Execute { get; internal set; }
         public string DisplayShortcut { get { return GetDisplayShortcut(); } }
 
         public override string ToString()
