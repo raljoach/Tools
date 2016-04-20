@@ -556,7 +556,8 @@ namespace CareerCupToolkit
             foreach (var qElem in questionsGrid)
             {
                 ++qNum;
-                string question = ExtractQuestion(qElem);
+                string link;
+                string question = ExtractQuestion(qElem, out link);
                 var found = true;
                 if (keywords != null && keywords.Count>0)
                 {
@@ -572,7 +573,7 @@ namespace CareerCupToolkit
                 }
                 if (!found) { continue; }
                 Console.WriteLine("".PadLeft(150, '-'));
-                Console.WriteLine("Question {0}-{1}:",pageNum,qNum);
+                Console.WriteLine("Question {0}-{1}: {2}",pageNum,qNum,link);
                 Console.WriteLine("".PadLeft(15, '-'));
                 Console.WriteLine(question);
                 Console.WriteLine("".PadLeft(150, '-'));
@@ -587,10 +588,11 @@ namespace CareerCupToolkit
             //Console.WriteLine("No more questions");
         }
 
-        private static string ExtractQuestion(IWebElement qElem)
+        private static string ExtractQuestion(IWebElement qElem, out string url)
         {
             var entry = qElem.FindElement(By.ClassName("entry"));
             var link = entry.FindElement(By.TagName("a"));
+            url = link.GetAttribute("href");
             //links.Add(link);
             var p = entry.FindElement(By.TagName("p"));
             var question = p.Text;
