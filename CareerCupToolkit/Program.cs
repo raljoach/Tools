@@ -118,6 +118,25 @@ namespace CareerCupToolkit
                                     driver.Quit();
                                 }
                             }),
+                        new Option(
+                            "Resume Search",
+                            "r",
+                            () =>
+                            {
+                                Console.WriteLine("Enter page number:");
+                                int pageNum = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Enter question number:");
+                                int qNum = int.Parse(Console.ReadLine());
+                                IWebDriver driver = InitPhantomJS();
+                                try
+                                {
+                                    DisplayQuestions(driver, selectedCompany, selectedTopic, pageNum, qNum);
+                                }
+                                finally
+                                {
+                                    driver.Quit();
+                                }
+                            }),
                             PreviousMenu(menu.Previous)
                         );
                 //break;                
@@ -448,6 +467,7 @@ namespace CareerCupToolkit
                 Console.Write("{0} ", quoteLabel);
             }
             Console.WriteLine();
+            Console.WriteLine();
         }
         private static void RemoveSearchTerms()
         {
@@ -475,6 +495,7 @@ namespace CareerCupToolkit
         {
             string entry = Ask("Enter one or more search terms to add:");
             var tokens = entry.Split(' ', '\t');
+            Console.WriteLine();
             AddSearchTerms(tokens);
         }
 
@@ -674,30 +695,33 @@ namespace CareerCupToolkit
         }
 
         private static bool pause = true;
-        private static void DisplayQuestions(IWebDriver driver, string company, string topic)
+        private static void DisplayQuestions(IWebDriver driver, string company, string topic, int pageStart = -1, int qStart = -1)
         {
             var currentPage = 1;
-            var pages = Search(driver, currentPage, company, topic);
+            var pages = Search(driver, currentPage, company, topic, pageStart);
+            foreach (var page in pages)
+            {
+                Print(page.PageNumber, page.Result, qStart);
+            }
+        }
+
+        private static void DisplayQuestions(IWebDriver driver, string topic, int pageStart=-1)
+        {
+            var currentPage = 1;
+            var pages = Search(driver, currentPage, pageStart, topic);
             foreach (var page in pages)
             {
                 Print(page.PageNumber, page.Result);
             }
         }
 
-        private static void DisplayQuestions(IWebDriver driver, string topic)
+        private static void DisplayQuestions(IWebDriver driver, Action setOptions, int pageStart=-1)
         {
-            var currentPage = 1;
-            var pages = Search(driver, currentPage, topic);
-            foreach (var page in pages)
+            /*using (var sw = new StreamWriter(new FileStream("error.log", FileMode.Truncate, FileAccess.Write)))
             {
-                Print(page.PageNumber, page.Result);
-            }
-        }
-
-        private static void DisplayQuestions(IWebDriver driver, Action setOptions)
-        {
+            }*/
             var currentPage = 1;
-            var pages = Search(driver, currentPage, setOptions);
+            var pages = Search(driver, currentPage, pageStart, setOptions);
             foreach (var page in pages)
             {
                 Print(page.PageNumber, page.Result);
@@ -705,92 +729,118 @@ namespace CareerCupToolkit
         }
 
 
-        private static void Print(int pageNum, ReadOnlyCollection<IWebElement> questionsGrid)
+        private static void Print(int pageNum, ReadOnlyCollection<IWebElement> questionsGrid, int qStart = -1)
         {
             //var links = new List<IWebElement>();
-            var qNum = 0;
+            var qNum = 0; // question<0?0:(question-1);
             foreach (var qElem in questionsGrid)
             {
                 ++qNum;
+                if (qStart > 0 && qNum < qStart) { continue; }
                 string link;
-                string question = ExtractQuestion(qElem, out link);
-                var found = true;
-                if (keywords != null && keywords.Count > 0)
+                try
                 {
-                    found = false;
-                    foreach (var k in keywords)
+                    string question = ExtractQuestion(qElem, out link);
+                    if (string.IsNullOrWhiteSpace(question)) { continue; }
+                    var found = true;
+                    if (keywords != null && keywords.Count > 0)
                     {
-                        if (question.Contains(k))
+                        found = false;
+                        foreach (var k in keywords)
                         {
-                            found = true;
-                            break;
+                            if (question.Contains(k))
+                            {
+                                found = true;
+                                break;
+                            }
                         }
                     }
-                }
-                if (!found) { continue; }
-                /*
-                Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
-                Console.WriteLine("Question {0}-{1}: {2}", pageNum, qNum, link);
-                Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
-                Console.WriteLine(question);
-                Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
-                Console.WriteLine();
-                */
-                var sb = new StringBuilder();
-                var width = Console.WindowWidth;
-                sb.AppendLine("".PadLeft(width, '-'));
-                sb.AppendLine(string.Format("Question {0}-{1}: {2}", pageNum, qNum, link));
-                sb.AppendLine("".PadLeft(width, '-'));
-                sb.AppendLine(question);
-                sb.AppendLine("".PadLeft(width, '-'));
-                sb.AppendLine();
-                var output = sb.ToString();
-                Console.WriteLine(output);
-                using (var sw = new StreamWriter(new FileStream("output.txt", FileMode.Append, FileAccess.Write)))
-                {
-                    sw.Write(output);
-                    sw.Flush();
-                }
-
-                if (pause)
-                {
-                    //Console.WriteLine("Hit enter to continue to next question...");
-                    var list = new List<Option>();
-                    Func<OptionsResult> show = () =>
+                    if (!found) { continue; }
+                    /*
+                    Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
+                    Console.WriteLine("Question {0}-{1}: {2}", pageNum, qNum, link);
+                    Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
+                    Console.WriteLine(question);
+                    Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
+                    Console.WriteLine();
+                    */
+                    var sb = new StringBuilder();
+                    var width = Console.WindowWidth;
+                    sb.AppendLine("".PadLeft(width, '-'));
+                    sb.AppendLine(string.Format("Question {0}-{1}: {2}", pageNum, qNum, link));
+                    sb.AppendLine("".PadLeft(width, '-'));
+                    sb.AppendLine(question);
+                    sb.AppendLine("".PadLeft(width, '-'));
+                    sb.AppendLine();
+                    var output = sb.ToString();
+                    Console.WriteLine(output);
+                    using (var sw = new StreamWriter(new FileStream("output.txt", FileMode.Append, FileAccess.Write)))
                     {
-                        var r = ShowOptions(
-                        "",
-                        false,
-                        list.ToArray()
-                        );
+                        sw.Write(output);
+                        sw.Flush();
+                    }
 
-                        r.chosen = GetUserInput();
-                        var index = GetSelection(false, r.options, r.indexHash, r.shortcutHash, r.chosen, ref found);
-                        var selected = r.options[index];
-                        selected.Execute();
-                        return r;
-                    };
-                    var myMenu = new CustomMenu(list, show, null);
-                    list.AddRange(ListOptions(new Menu(MenuType.Keywords, myMenu)));
-
-                    list.Insert(0,
-                        new ValueOption<string>("Hit enter to continue to next question...", "",
-                        () =>
+                    if (pause)
+                    {
+                        //Console.WriteLine("Hit enter to continue to next question...");
+                        var list = new List<Option>();
+                        Func<OptionsResult> show = () =>
                         {
+                            var r = ShowOptions(
+                            "",
+                            false,
+                            list.ToArray()
+                            );
+
+                            r.chosen = GetUserInput();
+                            var index = GetSelection(false, r.options, r.indexHash, r.shortcutHash, r.chosen, ref found);
+                            var selected = r.options[index];
+                            selected.Execute();
+                            return r;
+                        };
+                        var myMenu = new CustomMenu(list, show, null);
+                        list.AddRange(ListOptions(new Menu(MenuType.Keywords, myMenu)));
+
+                        list.Insert(0,
+                            new ValueOption<string>("Hit enter to continue to next question...", "",
+                            () =>
+                            {
                                 // Print next question 
                                 return "Enter";
-                        })
-                        );
+                            })
+                            );
 
-                    list.Insert(0,
-                        new Option("Remove pause", "u",
-                        () =>
-                        {
-                            pause = false;
-                        })
-                        );
+                        list.Insert(0,
+                            new Option("Remove pause", "u",
+                            () =>
+                            {
+                                pause = false;
+                            })
+                            );
 
-                    myMenu.Show();
+                        myMenu.Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var errSB = new StringBuilder();
+                    errSB.AppendFormat("Error encountered while extracting/printing question Page {0} - {0}.", qNum).AppendLine();
+                    errSB.AppendFormat("Topic {0}:", selectedTopic).AppendLine();
+                    errSB.AppendFormat("Company {0}:", selectedCompany).AppendLine();
+                    errSB.AppendFormat("Keywords: ").AppendLine();
+                    foreach (var k in keywords)
+                    {
+                        errSB.AppendLine(k);
+                    }
+                    errSB.AppendFormat("Exception:\r\n", ex.ToString()).AppendLine();
+                    errSB.AppendLine();
+
+                    Console.WriteLine(errSB.ToString());
+                    using (var sw = new StreamWriter(new FileStream("error.log", FileMode.Append, FileAccess.Write)))
+                    {
+                        sw.Write(errSB.ToString());
+                        sw.Flush();
+                    }
                 }
             }
             //Console.WriteLine("No more questions");
@@ -801,24 +851,42 @@ namespace CareerCupToolkit
             var entry = qElem.FindElement(By.ClassName("entry"));
             var link = entry.FindElement(By.TagName("a"));
             url = link.GetAttribute("href");
-            //links.Add(link);
-            var p = entry.FindElement(By.TagName("p"));
-            var question = p.Text;
-            return question;
+            var pList = entry.FindElements(By.TagName("p"));
+            if (pList == null || pList.Count == 0)
+            {
+                Console.WriteLine("Error: No <p> found in anchor tag for question. Therefore the question may not have any text.");
+                Console.WriteLine("Let's try the text field for the anchor tag");
+                var text = link.Text;
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    Console.WriteLine("Error: No text found for link....So question will be skipped");
+                    return null;
+                }
+                else
+                {
+                    return text;
+                }
+            }
+            else
+            {
+                var p = pList[0];
+                var question = p.Text;
+                return question;
+            }
         }
 
-        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, string company, string topic)
+        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, string company, string topic, int pageStart = -1)
         {
-            return Search(driver, currentPage, () =>
+            return Search(driver, currentPage, pageStart, () =>
             {
                 SelectCompany(driver, company);
                 SelectTopic(driver, topic);
             });
         }
 
-        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, string topic)
+        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, int pageStart, string topic)
         {
-            return Search(driver, currentPage, () =>
+            return Search(driver, currentPage, pageStart, () =>
             {
                 SelectTopic(driver, topic);
             });
@@ -835,7 +903,7 @@ namespace CareerCupToolkit
             public int PageNumber { get; set; }
         }
 
-        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, Action setOptions)
+        private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, int pageStart, Action setOptions)
         {
             driver.Navigate().GoToUrl(website);
             IWebElement questionsLink = driver.FindElement(By.LinkText("Questions"));
@@ -843,13 +911,19 @@ namespace CareerCupToolkit
             setOptions();
             driver.FindElement(By.XPath("//input[@value='Go']")).Click();
 
-            //int currentPage = 1;
+            if (pageStart > 0 && currentPage < pageStart)
+            {
+                Console.WriteLine("Searching for page {0}...", pageStart);
+                IWebElement page = FindPage(driver, pageStart);
+                currentPage = pageStart;
+            }
             while (true)
             {
                 Console.WriteLine("".PadLeft(150, 'x'));
                 Console.WriteLine("Page: {0}", currentPage);
                 Console.WriteLine("".PadLeft(150, 'x'));
                 Console.WriteLine();
+
                 yield return GetQuestions(driver, currentPage);
                 IWebElement page = GetNextPage(driver, currentPage++);
                 if (page == null) { break; }
@@ -888,16 +962,134 @@ namespace CareerCupToolkit
             return null;
         }
 
-        /*
-        private static IEnumerable<PageResult> Next(IWebDriver driver, int currentPage)
+        private static IWebElement FindPage(IWebDriver driver, int targetPageNum)
         {
-            yield return GetQuestions(driver, currentPage);
-            foreach (var m in VisitPages(driver, currentPage))
+            var pagesPanels = driver.FindElements(By.ClassName("pageListSection"));
+
+            foreach (var panel in pagesPanels)
             {
-                yield return m;
+                var label = panel.FindElement(By.ClassName("pageListSectionLabel"));
+                if (!label.Text.ToLower().Trim().StartsWith("page:")) { continue; }
+                var content = panel.FindElement(By.ClassName("pageListSectionContent"));
+                var pages = content.FindElements(By.TagName("a"));
+
+                if (pages.Count == 0) { throw new InvalidOperationException("Error: No pages available!"); }
+
+                bool found = false;
+                IWebElement lastPage;
+                int lastIndex = -1;
+                int lastPageNum = -1;
+                for (var back = pages.Count - 1; back >= 0; back--)
+                {
+                    lastPage = pages[back];
+                    var pStr = lastPage.Text.Trim();
+
+                    var isNum = int.TryParse(pStr, out lastPageNum);
+                    if (isNum)
+                    {
+                        found = true;
+                        lastIndex = back;
+                        break;
+                    }
+                }
+
+                if (!found) { throw new InvalidOperationException("Error: Could not locate last page!"); }
+
+                Console.WriteLine("Current page set's last page is {0}...", lastPageNum);
+                if (targetPageNum < lastPageNum)
+                {                    
+                    var rewind = lastPageNum - targetPageNum;
+                    var targetIndex = lastIndex - rewind;
+                    if (targetIndex < 0)
+                    {                        
+                        return FindBack(driver, targetPageNum, pages);
+                    }
+                    else
+                    {
+                        return GetPage(driver, targetPageNum, pages, targetIndex, true);
+                    }
+                }
+                else
+                {
+                    var fastForward = targetPageNum - lastPageNum;
+                    var targetIndex = lastIndex + fastForward;
+                    if (targetIndex >= pages.Count)
+                    {
+                        return FindForward(driver, targetPageNum, pages);
+                    }
+                    else
+                    {
+                        return GetPage(driver, targetPageNum, pages, targetIndex, false);
+                    }
+                }              
+            }
+            return null;
+        }
+
+        private static IWebElement FindForward(IWebDriver driver, int targetPageNum, ReadOnlyCollection<IWebElement> pages)
+        {
+            Console.WriteLine("Fast-forward for page {0}...", targetPageNum);
+            bool found = false;
+            for (int j=pages.Count-1; j>=0; j--)
+            {
+                var p = pages[j];
+                var pageStr = p.Text.Trim();
+                if (pageStr == ">>" || pageStr == "»") { found = true; p.Click(); return FindPage(driver, targetPageNum); /*break;*/ }
+            }
+            if (!found) { throw new InvalidOperationException("Error: Could not find << in pages section!"); }
+
+            return null;
+        }
+
+        private static IWebElement GetPage(IWebDriver driver, int targetPageNum, ReadOnlyCollection<IWebElement> pages, int targetIndex, bool goBack)
+        {
+            Console.WriteLine("Page {0} should be in current set of pages at index {1}...", targetPageNum, targetIndex);
+            var p = pages[targetIndex];
+            var pageStr = p.Text.Trim();
+            var pageNum = -1;
+            bool isNum = int.TryParse(pageStr, out pageNum);
+            if (!isNum)
+            {
+                Console.WriteLine("Target index {0} in current page set is not a number, it's '{1}'...", targetIndex, pageStr);
+                Console.WriteLine("To correct this, will either move forward or back a page set...");
+                if (goBack)
+                {
+                    return FindBack(driver, targetPageNum, pages);
+                }
+                else
+                {
+                    return FindForward(driver, targetPageNum, pages);
+                }
+            }
+            else
+            {
+                if (pageNum == targetPageNum)
+                {
+                    Console.WriteLine("SUCCESS: Able to locate page {0}", targetPageNum);
+                    return p;
+                }
+                else
+                {
+                    throw new InvalidOperationException(
+                        string.Format("Catastrophic Error: Expected page {0}, Actual {1}", targetPageNum, pageNum));
+                }
+
             }
         }
-        */
+
+        private static IWebElement FindBack(IWebDriver driver, int targetPageNum, ReadOnlyCollection<IWebElement> pages)
+        {
+            Console.WriteLine("Rewind back for page {0}...", targetPageNum);
+            bool found = false;
+            foreach (var p in pages)
+            {
+                var pageStr = p.Text.Trim();
+                if (pageStr == "<<" || pageStr == "«") { found = true; p.Click(); return FindPage(driver, targetPageNum); /*break;*/ }
+            }
+            if (!found) { throw new InvalidOperationException("Error: Could not find << in pages section!"); }
+
+            return null;
+        }
 
         private static PageResult GetQuestions(IWebDriver driver, int pageNum)
         {
