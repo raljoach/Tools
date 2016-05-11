@@ -1,0 +1,345 @@
+------------------------------------------------------------------------------------------------------------------------
+Question 1-1: https://careercup.com/question?id=5722807649435648
+------------------------------------------------------------------------------------------------------------------------
+There are N coins with coordinates (x, y) where x >0 and y >0
+You start at (0, 0) and you can only do steps of form (dx, dy) where dx >0 and dy > 0
+Print the maximum number of coins that you can collect.
+
+Clarification: you can do as many moves as you wish, the point is to collect maximum number of coins. If you are located at position (a, b) you may jump to position (a+dx, b+dy) for all dx > 0 and dy > 0
+
+@krbchd: Your algorithm may output incorrect values. Suppose there are points (5, 7), (5, 8), (5, 9) for y coordinates LIS will output 7, 8, 9, however since these points are on the same x axis, you can choose only one of them.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-3: https://careercup.com/question?id=5749533368647680
+------------------------------------------------------------------------------------------------------------------------
+Given the root of a binary tree containing integers, print the columns of the tree in order with the nodes in each column printed top-to-bottom.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-10: https://careercup.com/question?id=5746222650359808
+------------------------------------------------------------------------------------------------------------------------
+Given a forest of balanced binary trees and two nodes, n1 and n2, find the closest common parent of n1 and n2. Nodes have parameters "parent", "left" and "right", and you cannot access the values of the nodes. If n1 and n2 are not on the same tree, return NULL.
+
+Try to do this in O(log(n)) time and O(1) space.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-28: https://careercup.com/question?id=5126656387710976
+------------------------------------------------------------------------------------------------------------------------
+check a binary tree is a binary search tree
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-19: https://careercup.com/question?id=5678808906596352
+------------------------------------------------------------------------------------------------------------------------
+/*
+For each node in a binary tree find the next right node on the same depth. Write a function that takes root node and populates "next" with the answer for each node.
+
+A
+/ \
+B -> C
+/ / \
+D -> F-> G
+/ \
+H -> I
+
+class Node {
+Node left;
+Node right;
+Node next; // <-- answer should be stored here
+};
+
+B.next = C
+D.next = F
+F.next = G
+H.next = I
+{A, C, G, I}.next = null
+*/
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-11: https://careercup.com/question?id=5647453514629120
+------------------------------------------------------------------------------------------------------------------------
+Convert a binary tree into a In Order traversal circular list re-purposing the node's pointers Left & Right as Previous and Next respectively.
+
+Hint: A single node Left & Right points to itself.
+
+Note: This is not a binary search tree.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-17: https://careercup.com/question?id=6715482117767168
+------------------------------------------------------------------------------------------------------------------------
+The closest common ancestor in a tree forest.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-22: https://careercup.com/question?id=5156120807079936
+------------------------------------------------------------------------------------------------------------------------
+Tree to List: convert a binary tree to a circular doubly-linked list
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-26: https://careercup.com/question?id=4505011482525696
+------------------------------------------------------------------------------------------------------------------------
+Write a function to print the rows of a binary tree, terminating each row with a carriage return
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-29: https://careercup.com/question?id=5665654537453568
+------------------------------------------------------------------------------------------------------------------------
+Print a BST such that it looks like a tree (with new lines and indentation, the way we see it in algorithms books).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-3: https://careercup.com/question?id=5723872416497664
+------------------------------------------------------------------------------------------------------------------------
+Given a list of strings, return a list of lists of strings that groups all anagrams.
+
+Ex. given {trees, bike, cars, steer, arcs}
+return { {cars, arcs}, {bike}, {trees, steer} }
+
+m = # of words
+n = length of longest word
+
+I solved this in O(m * n * log n) time.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-11: https://careercup.com/question?id=5760235918589952
+------------------------------------------------------------------------------------------------------------------------
+Suppose we have array of N numbers. We will define N functions on this array. Each function will return the sum of all numbers in the array from Li to Ri ( Li is left index, Ri is right index). Now we have 2 types of queries:
+
+Type1: 1 x y Change the xth element of the array to y
+Type2: 2 l r Return the sum of all functions from m to n.
+
+Input type:
+First Line is the size of the array i.e. N
+
+Next Line contains N space separated numbers Ai denoting the array
+
+Next N line follows denoting Li and Ri for each functions.
+
+Next Line contains an integer Q , number of queries to follow.
+
+Next Q line follows , each line containing a query of Type 1 or Type 2
+
+Here is an example:
+Input:
+5
+1 2 3 4 5
+1 2
+3 4
+1 4
+1 5
+3 5
+5
+1 1 5
+2 2 4
+2 1 3
+1 4 5
+2 1 5
+
+Output:
+40
+28
+63
+
+Explanation:
+Function 1 is sum of values from index 1 to index 2 = 1+2=3
+So , F1=3
+Similarly, F2=3+4=7
+F3=1+2+3+4=10
+F4=15
+F5=12
+
+Now when I query 1 1 5
+means it is type 1 query, so we replace value at index 1 by 5.
+So our new array is,
+5 2 3 4 5
+and
+F1=7
+F2=7(unchanged)
+F3=14
+F4=19
+F5=12(unchanged)
+
+Then next query is 2 2 4
+means give sum of all functions from index 2 to 4.
+So, ans= 7+14+19 =40 (output 1)
+
+Similarly are other 2 outputs.
+Index are 1 based in example.
+Comment me if you are not clear with question.
+
+Edit: I know one can do it with naive approach or using segment tree. But they wanted more faster way to do it.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-17: https://careercup.com/question?id=5197316961075200
+------------------------------------------------------------------------------------------------------------------------
+(To write in Objective-C; I will write the EXACT question)
+
+Given a dictionary of words, return an array of the words whose match. (i.e. pattern "c.t" match with "cat", "cut", etc. because the dot notation stand for ANY character).
+
+
+SUGGEST: use suffix tree, for(for()) is not a good solution.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-20: https://careercup.com/question?id=5735068173598720
+------------------------------------------------------------------------------------------------------------------------
+Find the maximum depth of binary tree?
+
+Once I wrote the code for this, interviewer asked me next question
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-2: https://careercup.com/question?id=5756589822705664
+------------------------------------------------------------------------------------------------------------------------
+Given a self-balancing tree (AVL), code a method that returns the median.
+
+(Median: the numerical value separating the higher half of a data sample from the lower half. Example: if the series is
+
+2, 7, 4, 9, 1, 5, 8, 3, 6
+
+then the median is 5.)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-7: https://careercup.com/question?id=5979809976942592
+------------------------------------------------------------------------------------------------------------------------
+An UIView A2 is subclassed from the same parent as an UIView A1.
+
+Given inputs of A1, A2, and an UIView that is in the tree of UIViews of A1 somewhere, return the exact UIView that mirrors this in A2.
+
+Example setup:
+
+A1------------
+| |
+UIView UIView
+|
+UIView <-- Given this
+
+A2------------
+| |
+UIView UIView
+|
+UIView <-- Find/return this
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-11: https://careercup.com/question?id=5742219382226944
+------------------------------------------------------------------------------------------------------------------------
+Print all paths of a binary tree from root to leaf.
+
+Later, extend the solution to work with graphs, careful attention to cycles which you should print as paths as well (without printing visited nodes twice).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-23: https://careercup.com/question?id=5729456584916992
+------------------------------------------------------------------------------------------------------------------------
+Given a normal binary tree, write a function to serialize the tree into a string representation (returning the string), and also a function to deserialize a serialized string into the original binary tree.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-24: https://careercup.com/question?id=5119108714594304
+------------------------------------------------------------------------------------------------------------------------
+Given a normal binary tree, write a function to serialize it into a string representation (returning a string), and also a function to deserialize the string into the original binary tree
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-28: https://careercup.com/question?id=6241652616200192
+------------------------------------------------------------------------------------------------------------------------
+Given a Binary Tree (balanced or not) write a method that transforms the tree in a degenerate tree (basically a data structure like a sorted linked list where each node has the left child null) and returns the new root. This must be made in place, no external memory usage is allowed.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-22: https://careercup.com/question?id=5632735657852928
+------------------------------------------------------------------------------------------------------------------------
+Check if a given tree is a valid BST
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-30: https://careercup.com/question?id=5188884744896512
+------------------------------------------------------------------------------------------------------------------------
+boolean isBST(const Node* node) {
+// return true iff the tree with root 'node' is a binary search tree.
+// 'node' is guaranteed to be a binary tree.
+}
+
+n
+/ \
+a b
+\
+c
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-1: https://careercup.com/question?id=15645665
+------------------------------------------------------------------------------------------------------------------------
+Find the k'th largest element in a binary search tree. Write code for
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-8: https://careercup.com/question?id=14569808
+------------------------------------------------------------------------------------------------------------------------
+Write a function that takes 2 arguments: a binary tree and an integer N, it should return the N-th element in the inorder traversal of the binary tree. I asked the interviewer if I could use a 3rd argument to store the result; he said okay.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-1: https://careercup.com/question?id=12442671
+------------------------------------------------------------------------------------------------------------------------
+Print the binary tree level by level. Suggest methods. If one of your method is using queue and some delimiter is detect the change in levels, what is its space and time complexity. Prove your analysis. (yes, CLRS style proof is expected)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-20: https://careercup.com/question?id=9333969
+------------------------------------------------------------------------------------------------------------------------
+A tree is serialized in such a way that all the leaves are market with L and all the other nodes with N. The tree is serialized keeping the order derived by a pre-order traversal. Write an algorithm for reconstructing the tree. Also, suggest a methodology for improving the serialization.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-2: https://careercup.com/question?id=8635794
+------------------------------------------------------------------------------------------------------------------------
+Print a binary tree in level order with a new line after every level.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-10: https://careercup.com/question?id=6913773
+------------------------------------------------------------------------------------------------------------------------
+Find the minimum depth of a binary tree
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-11: https://careercup.com/question?id=6910676
+------------------------------------------------------------------------------------------------------------------------
+Write a function to find the depth of a binary search tree
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-13: https://careercup.com/question?id=6322661
+------------------------------------------------------------------------------------------------------------------------
+Print an arbitrary tree, level by level
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-22: https://careercup.com/question?id=4476686
+------------------------------------------------------------------------------------------------------------------------
+Given a binary tree, compute min depth of a leaf node.
+
+Hint:
+1. BFS
+2. Recursive implementation
+Which is better in time complexity?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-2: https://careercup.com/question?id=405592
+------------------------------------------------------------------------------------------------------------------------
+Take a tree (binary or otherwise), write a method in any language that, when given the root node, will print out the tree in level order. With a new line after the end of every level.
+
+Helper methods are ok, big O run time efficiency doesn't matter (though obviously a quicker solution is better). Do not destroy original tree.
+------------------------------------------------------------------------------------------------------------------------
+

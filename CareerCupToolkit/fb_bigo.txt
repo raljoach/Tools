@@ -1,0 +1,402 @@
+------------------------------------------------------------------------------------------------------------------------
+Question 1-1: https://careercup.com/question?id=5722807649435648
+------------------------------------------------------------------------------------------------------------------------
+There are N coins with coordinates (x, y) where x >0 and y >0
+You start at (0, 0) and you can only do steps of form (dx, dy) where dx >0 and dy > 0
+Print the maximum number of coins that you can collect.
+
+Clarification: you can do as many moves as you wish, the point is to collect maximum number of coins. If you are located at position (a, b) you may jump to position (a+dx, b+dy) for all dx > 0 and dy > 0
+
+@krbchd: Your algorithm may output incorrect values. Suppose there are points (5, 7), (5, 8), (5, 9) for y coordinates LIS will output 7, 8, 9, however since these points are on the same x axis, you can choose only one of them.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-10: https://careercup.com/question?id=5746222650359808
+------------------------------------------------------------------------------------------------------------------------
+Given a forest of balanced binary trees and two nodes, n1 and n2, find the closest common parent of n1 and n2. Nodes have parameters "parent", "left" and "right", and you cannot access the values of the nodes. If n1 and n2 are not on the same tree, return NULL.
+
+Try to do this in O(log(n)) time and O(1) space.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-12: https://careercup.com/question?id=5723399261257728
+------------------------------------------------------------------------------------------------------------------------
+Given integer k and a subset S of set {0, 1, 2, ..., 2^k - 1}
+Return the count of pairs (a, b) where a and b are from S and (a < b) and (a & b == a)
+& here is bit-wise and.
+Do it faster than O((2^k)^2), assume k <= 16
+
+Example:
+0b111
+0b101
+0b010
+Answer: 2
+
+0b110
+0b011
+0b101
+Answer: 0
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-20: https://careercup.com/question?id=5080100049518592
+------------------------------------------------------------------------------------------------------------------------
+You are given a set of points on x axis (consumers)
+Also you are given a set of points on a plane (producer)
+
+For every consumer print the nearest producer.
+Wanted something better than O(n^2) time.
+
+Example:
+consumers: 1 5 7
+producers: (0, 3), (1,1), (3, 2), (8, 10), (9, 100)
+
+Answer:
+for 1 nearest producer is (1, 1), for 5 nearest is (3, 2), for 7 nearest is (3, 2)
+
+Follow-up question: now both sets are sorted by x coordinate. Could you come up with a linear algorithm?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-25: https://careercup.com/question?id=5728954549796864
+------------------------------------------------------------------------------------------------------------------------
+Write Program for String Permutations using most efficient algorithm. Can you solve problem in O(n) time ?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-26: https://careercup.com/question?id=5113392333324288
+------------------------------------------------------------------------------------------------------------------------
+Given an array such that every next element differs from the previous by +/- 1. (i.e. a[i+1] = a[i] +/-1 ) Find the local max OR min in O(1) time. The interviewer mentioned one more condition that the min or max should be non-edge elements of the array
+Example: 1 2 3 4 5 4 3 2 1 -> Local max is 5
+1 2 3 4 5 -> No local max or min exists
+5 4 3 2 1 -> No local max or min exists
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-7: https://careercup.com/question?id=5134949294276608
+------------------------------------------------------------------------------------------------------------------------
+Write a program that reverses a linked list without using more than O(1) storage.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-8: https://careercup.com/question?id=5669407776833536
+------------------------------------------------------------------------------------------------------------------------
+Write a program that answers YES/NO search queries containing * placeholders. Example: if the data you have is (hazem, ahmed, moustafa, fizo), then you should answer as follows for:
+ahmed: YES
+m**stafa: YES
+fizoo: NO
+fizd: NO
+*****: YES
+****: YES
+**: NO
+Your program should be able to answer each search query in O(1).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-14: https://careercup.com/question?id=6051351341563904
+------------------------------------------------------------------------------------------------------------------------
+Completely blew it on this question today.
+
+1.) Given an array, find the maximum difference between two array elements given the second element comes after the first.
+
+For example.
+
+array = [1,2,3,4,5,6,7]
+
+We can take the difference between 2 and 1 (2-1), but not the different between 1 and 2 (1-2).
+
+This question is super easy, I solved it within minutes of getting of the phone. I came up with an O(n^2) solution over the phone. My improved solution was O(n).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-20: https://careercup.com/question?id=5090815091146752
+------------------------------------------------------------------------------------------------------------------------
+Given a set of n people, find the celebrity.
+Celebrity is a person who:
+1. Knows only himself and no one else
+2. Every one else knows this person
+
+You are given the following helper function:
+bool knows(i, j);
+Returns:
+True: If i knows j
+False: otherwise
+
+I proposed the O(n2) algorithm at first but he wanted me to improve on it. He wanted an O(n) algorithm
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-28: https://careercup.com/question?id=5129701993480192
+------------------------------------------------------------------------------------------------------------------------
+Given an array of ages (integers) sorted lowest to highest, output the number of occurrences for each age.
+For instance:
+[8,8,8,9,9,11,15,16,16,16]
+should output something like:
+8: 3
+9: 2
+11: 1
+15: 1
+16: 3
+
+This should be done in less than O(n).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-3: https://careercup.com/question?id=5723872416497664
+------------------------------------------------------------------------------------------------------------------------
+Given a list of strings, return a list of lists of strings that groups all anagrams.
+
+Ex. given {trees, bike, cars, steer, arcs}
+return { {cars, arcs}, {bike}, {trees, steer} }
+
+m = # of words
+n = length of longest word
+
+I solved this in O(m * n * log n) time.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-4: https://careercup.com/question?id=5692698000359424
+------------------------------------------------------------------------------------------------------------------------
+Array of size (n-m) with numbers from 1..n with m of them missing. Find one all of the missing numbers in O(log). Array is sorted.
+
+Example:
+n = 8
+arr = [1,2,4,5,6,8]
+m=2
+Result has to be a set {3, 7}.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-10: https://careercup.com/question?id=6009238532915200
+------------------------------------------------------------------------------------------------------------------------
+write an algorithm to decide weather a string is a palindrome.
+Ignore any non-letter characters in the the string.
+Ignore capital/lower case.
+Space complexity O(1)
+
+for example, the following should return true:
+A man, a plan, a canal -- Panama!
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-13: https://careercup.com/question?id=5179916190482432
+------------------------------------------------------------------------------------------------------------------------
+input [2,3,1,4]
+output [12,8,24,6]
+
+Multiply all fields except it's own position.
+
+Restrictions:
+1. no use of division
+2. complexity in O(n)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-18: https://careercup.com/question?id=5177378863054848
+------------------------------------------------------------------------------------------------------------------------
+Write a function for retrieving the total number of substring palindromes.
+For example the input is 'abba' then the possible palindromes= a, b, b, a, bb, abba
+So the result is 6.
+
+Updated at 11/11/2013:
+After the interview I got know that the O(n^3) solution is not enough to go to the next round. It would have been better to know before starting implementing the solution unnecessarily ...
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-21: https://careercup.com/question?id=4798365246160896
+------------------------------------------------------------------------------------------------------------------------
+Question was on Arithmetic progression
+
+Example :
+Given the AP :- 1 3 7 9 11 13 find the missing value "which would be 5 here".
+
+Conditions :
+Get an user for the length of AP sequence and make sure user provides length is above 3.
+Get the input in a single line ex:- "1 3 5 7 9 11"
+Provide the solution in O(n) or less if you can.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-3: https://careercup.com/question?id=5761467236220928
+------------------------------------------------------------------------------------------------------------------------
+Given an array of randomly sorted integers and an integer k, write a function which returns boolean True if a pair of numbers exists in the array such that A[i] + A[j] = k and False otherwise. Provide an O(N) and an O(N log N) solution.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-4: https://careercup.com/question?id=15538686
+------------------------------------------------------------------------------------------------------------------------
+Convert a string of Roman numerals to an integer in O(n) time
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-13: https://careercup.com/question?id=15443800
+------------------------------------------------------------------------------------------------------------------------
+As input, you are given two sets:
+1) set R of n1 non-overlapping rectangles, whose sides are parallel to the x- and y-axes (ie: not rotated rectangles). Each rectangle denoted by bottom left & top right corner coordinates.
+2) set P of n2 points
+- let n = n1 + n2
+
+For each point 'p' in set P, find the rectangle 'r_p' in set R that contains 'p'. If 'p' is not enclosed by any rectangle, then 'r_p' is undefined. Otherwise, 'r_p' is unique because of the non-overlapping set.
+
+Goal: come up with a divide-and-conquer pseudocode to solve the general problem in O(n(logn)^2) time.
+
+Asked about points that are on the edge of the rectangle, and they said it was up to me whether to include those or not, just a matter of "<" vs "<=", etc. comparisons. Because it's just pseudocode they were looking for, they were not too concerned with the actual structure of the return value, just that the D&C algorithm showed the logic.
+
+Struggled with it for awhile and they simplified the problem to a ~special case with the constraint where all rectangles of R intersected a horizontal line 'L', and instead give a O(nlogn) algorithm to solve the same problem. I suspect this would've been a subproblem/subroutine of the more general case, but again got a bit lost.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 9-5: https://careercup.com/question?id=14859694
+------------------------------------------------------------------------------------------------------------------------
+Given an array and a key, sum min subarray whose sum is no less than key. O(n) Time needed
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-22: https://careercup.com/question?id=13364661
+------------------------------------------------------------------------------------------------------------------------
+Suppose you have a graph G(V,E).
+You are supposed to find the shortest path from a vertex 's' to vertex 'e' for 'n' different cases.
+
+In each case one of the edges 'Ei' (any one edge) of the graph will be blocked/deleted only for that case and we have to find the shortest path in the graph with that edge removed.
+
+Guys finding the shortest path is easy. But how can I make the algo so fast that even if I remove one of the edges my algo should still be very fast. O(n log n) or faster.
+Remember we are not deleting the edges permanently. We are just temporary removing one edge per case.
+In each case only one edge is removed.
+Suppose we blocked one edge E in one case. We have to find the shortest path for the graph.
+In next case, we will reconnect the last edge and we will block/remove a new edge. And again for this new case we have to find the shortest path.
+
+Another way of understanding the problem is suppose there are cities connected to each other.
+And every day one of the roads gets blocked because of heavy rain. what is the shortest path every day from city s to e.
+Also one more important thing to note that each road can be used only once.
+But there could be more than 1 direct road from city a to city b.
+
+FInd the shortest path distance from city s to e on a day when all direct roads from city f to city h are blocked. If there is no connecting path return -1
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-6: https://careercup.com/question?id=12266664
+------------------------------------------------------------------------------------------------------------------------
+You are given a list of points in the plane, write a program that
+outputs each point along with the three other points that are closest
+to it. These three points ordered by distance.
+The order is less then O(n^2) .
+
+For example, given a set of points where each line is of the form: ID
+x-coordinate y-coordinate
+
+
+1 0.0 0.0
+2 10.1 -10.1
+3 -12.2 12.2
+4 38.3 38.3
+5 79.99 179.99
+
+
+Your program should output:
+
+
+1 2,3,4
+2 1,3,4
+3 1,2,4
+4 1,2,3
+5 4,3,1
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-27: https://careercup.com/question?id=8674807
+------------------------------------------------------------------------------------------------------------------------
+Efficient way to count number of 1s in the binary representation of a number. How can you do it in O(1) if you have enough memory to play with.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-6: https://careercup.com/question?id=7894677
+------------------------------------------------------------------------------------------------------------------------
+You are given N ranges of date offsets when N employees are present in an organization. Something like
+
+1-4 (i.e. employee will come on 1st, 2nd, 3rd and 4th day )
+2-6
+8-9
+..
+
+
+1-14
+
+You have to organize an event on minimum number of days such that each employee can attend the event at least twice. Write an algorithm (there is apparently an O(n) algorithm for this).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-7: https://careercup.com/question?id=7208176
+------------------------------------------------------------------------------------------------------------------------
+First the interviewer have called me on time, he introduced himself and his project which takes about 10 minutes, then he asked me why do you want to join facebook..
+Then he started in the technical questions, the first questions was:
+he described to me a game called othelo (http://en.wikipedia.org/wiki/Reversi) which is a 2 player board game using for example X and O, if player X placed X in an empty space
+_OOOX
+the O's between the two X's will be converted to X
+XOOOX ==> XXXXX
+this will happen on the current row, column, and the two diagonals in every directions
+and if the following case happened
+__OOX
+and the X player placed X in the first space
+X_OOX
+nothing occured for the two Os
+
+given a certain state of the board, location on the board, a certain piece
+to place on the given location
+
+update the board, and make the required validations
+
+Then I started to code the required method, then have revised it and fixed small bugs, then he told me that it seems to be working.
+
+then we turned to the second question:
+which is given a Collection<String> words, return a Collection<String> of anagrams found in the given collection for example "The rat fell in the tar" => returned [rat tar]
+
+Then I have discussed him in an algorithm with O(n k lg k) where n is the number of words and k is the average length of the word, then I started to code it and then he said that it seems to be working.
+
+then the interview is finished.
+
+Notes:
+* Try to practice a lot before the interview, by solving such problems and try to mimic the interview environment by coding in the collabedit.com text editor
+* Don't use Ctrl + S while coding in collabedit as it may lead to some problems.
+* Don't be afraid before the interview, just calm down as the interviewers are very friendly.
+
+Good Luck :)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-17: https://careercup.com/question?id=4423692
+------------------------------------------------------------------------------------------------------------------------
+Given a histogram of n items stacked next to each other, find the Max area under a given rectangle.
+Each bar in the histogram has width = 1 unit and hight is variable.
+
+Hint: Brute force approach gives you O(n2) solution. Can you do better?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-20: https://careercup.com/question?id=4447673
+------------------------------------------------------------------------------------------------------------------------
+Find 2 numbers in an integer array that sum to x. If found return true else false.
+1. simple solution is O(n2)
+2. Using certain data struct it can be improved to O(n) but you have to check for a special condition. what is that? Hint: if x = 4 and one of the values in the array is 2.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-3: https://careercup.com/question?id=386151
+------------------------------------------------------------------------------------------------------------------------
+Write code for finding length of largest monotonically increasing sequence in an array of integers.
+Optimize it (not the usual O(n) in worst case, but a better approach in average case).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-8: https://careercup.com/question?id=102744
+------------------------------------------------------------------------------------------------------------------------
+shuffle an array of size n such that each element has 1/n probability to remain in its original spot. The best solution has O(n) complexity.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-15: https://careercup.com/question?id=64919
+------------------------------------------------------------------------------------------------------------------------
+Given two lists l1,l2, show how to merge them in
+O(1) time. The data structures for the lists depends on how you design it.
+------------------------------------------------------------------------------------------------------------------------
+

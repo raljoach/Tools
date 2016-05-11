@@ -1,0 +1,223 @@
+------------------------------------------------------------------------------------------------------------------------
+Question 1-1: https://careercup.com/question?id=5722807649435648
+------------------------------------------------------------------------------------------------------------------------
+There are N coins with coordinates (x, y) where x >0 and y >0
+You start at (0, 0) and you can only do steps of form (dx, dy) where dx >0 and dy > 0
+Print the maximum number of coins that you can collect.
+
+Clarification: you can do as many moves as you wish, the point is to collect maximum number of coins. If you are located at position (a, b) you may jump to position (a+dx, b+dy) for all dx > 0 and dy > 0
+
+@krbchd: Your algorithm may output incorrect values. Suppose there are points (5, 7), (5, 8), (5, 9) for y coordinates LIS will output 7, 8, 9, however since these points are on the same x axis, you can choose only one of them.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-2: https://careercup.com/question?id=5652404478410752
+------------------------------------------------------------------------------------------------------------------------
+GIven a string "str" and pair of "N" swapping indices, generate a lexicographically largest string. Swapping indices can be reused any number times.
+
+Eg 1)
+
+String = "abdc"
+
+Indices:
+
+(1,4)
+
+(3,4)
+
+Answer:
+
+cdba, cbad, dbac,dbca
+
+you should print only "dbca" which is lexicographically largest.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-11: https://careercup.com/question?id=5643746207072256
+------------------------------------------------------------------------------------------------------------------------
+Given an undirected graph and a node, modify the graph into a directed graph such that, any path leads to one particular node.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-7: https://careercup.com/question?id=5715650070708224
+------------------------------------------------------------------------------------------------------------------------
+There's a new language which uses the latin alphabet. However, you don't know the order among letters.
+
+It could be:
+a b c d ...
+
+as it could also be:
+
+b e z a m i ...
+
+You receive a list of words lexicographically sorted by the rules of this new language. From this list, derive one valid particular ordering of letters in this language.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-11: https://careercup.com/question?id=5742219382226944
+------------------------------------------------------------------------------------------------------------------------
+Print all paths of a binary tree from root to leaf.
+
+Later, extend the solution to work with graphs, careful attention to cycles which you should print as paths as well (without printing visited nodes twice).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-26: https://careercup.com/question?id=5978392075698176
+------------------------------------------------------------------------------------------------------------------------
+As we know facebook always asks questions from graph theory he asked me this problem to code-
+
+there is a grid of n*n where each cell represent an Island or and some of these are very dangerous so u have to avoid these during path selections.You can move up,down,left ,right.You are given your starting position ,positions of dangerous Islands and position some specific Islands.Your task is to deliver a message to all the specific Islands in minimum number of moves to all specific Islands(NOTE- there are also chances that no moves are possible to cover all specific Island ,in such case you have to tell "NOT POSSIBLE TO DELIVER ALL ",otherwise output minimum moves).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-27: https://careercup.com/question?id=5922416572235776
+------------------------------------------------------------------------------------------------------------------------
+Write code to print all different paths in an undirected graph from a given source to destination with no loop(any node can be at most once in a path ).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-28: https://careercup.com/question?id=6193320829124608
+------------------------------------------------------------------------------------------------------------------------
+Given a undirected graph, source and destination, write the code to find the total number of distinct nodes visited, considering all possible paths.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-11: https://careercup.com/question?id=23672664
+------------------------------------------------------------------------------------------------------------------------
+We have a rectangle with n rows and m columns filled with numbers from 1 to n*m.
+Cell (i,j) of the rectangle is important iff:
+* i = 1 and j = 1 (or)
+*there is an important cell (a,b) such that (a,b) is a neighbor of (i,j) and the number
+on (i,j) is greater than number on cell (a,b) and all of (a,b)'s neighbors except for (
+(i,j) itself
+
+Two cells are considered to be neighbors if they share a common edge between them.
+Unfortunately the number in some of the cells has been erased. We want to write a number to those cells such that the resultant rectangle has all the numbers between 1 to n*m and it contains as many important cells as possible. In case there are several ways to do that, we are interested with the rectangle which is lexicographically smallest.
+A table is lexicographically smaller that the other if the string of its row-major view is lexicographically smaller than the other.
+Input:
+The first line of the input contains two integers n and m, Each of the next n lines contains m tokens. Each token is either an integer between 1 and n*m or '?'.
+Output:
+Print the maximum number of important cells that can be obtained in the first line of the output and print the rectangle in the next n lines.
+
+Constraints:
+1 <=n,m <=6
+
+Sample input #00:
+2 3
+2 ? ?
+? ? 3
+
+Sample output #00:
+3
+2 1 4
+5 6 3
+
+Sample input #01:
+6 6
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+
+Sample output #02:
+24
+1 2 3 13 14 15
+4 6 8 10 11 16
+5 7 9 12 19 17
+28 26 24 22 20 18
+29 27 25 23 21 36
+30 31 32 33 34 35
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-12: https://careercup.com/question?id=23869663
+------------------------------------------------------------------------------------------------------------------------
+A string is called sstring if it consists of lowercase english letters and no two of its consecutive characters are the same.
+
+You are given string s of length n. Calculate the number of sstrings of length that are not lexicographically greater than s.
+Input format
+The only line of input contains the string s. It's length is not greater than 100.
+All characters of input are lowercase english letters.
+
+Output format:
+Print the answer of test modulo 1009 to the only line of output.
+
+Sample input:
+bcd
+
+Sample output:
+653
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-30: https://careercup.com/question?id=15888677
+------------------------------------------------------------------------------------------------------------------------
+Write a program to clone a graph
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-10: https://careercup.com/question?id=14463150
+------------------------------------------------------------------------------------------------------------------------
+A string s is said to be unique if no two characters of s are same.
+A string s1 is producible from s2 by removing some of the characters from s2.
+A string s1 is said to be more beautiful than s2 if length of s1 is more than s2 or if both have same length and s1 is lexicographically greater than s2( ex: ba is more beautiful than ab)
+Input: is a string which can be of maximum 10^6 characters, you have to produce the most beautiful unique string out of the given string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-14: https://careercup.com/question?id=14412669
+------------------------------------------------------------------------------------------------------------------------
+Input:
+3
+3 1 2
+nny
+nnn
+ynn
+output:
+2 1 3
+n size of permutation P.First line of input is n.Second line is the permutation P.A Permutation X is said to be lexicographically smaller than Y if for all digits till i X[i]=Y[i] and for i+1 X[i]<=Y[i]so you can exchange the integers in the given permutation P if character j of line i+2 is 'y' then i th and j th integer in P can be exchanged .
+Output:Lexicographically smallest premutation of the given P using rule
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-22: https://careercup.com/question?id=13364661
+------------------------------------------------------------------------------------------------------------------------
+Suppose you have a graph G(V,E).
+You are supposed to find the shortest path from a vertex 's' to vertex 'e' for 'n' different cases.
+
+In each case one of the edges 'Ei' (any one edge) of the graph will be blocked/deleted only for that case and we have to find the shortest path in the graph with that edge removed.
+
+Guys finding the shortest path is easy. But how can I make the algo so fast that even if I remove one of the edges my algo should still be very fast. O(n log n) or faster.
+Remember we are not deleting the edges permanently. We are just temporary removing one edge per case.
+In each case only one edge is removed.
+Suppose we blocked one edge E in one case. We have to find the shortest path for the graph.
+In next case, we will reconnect the last edge and we will block/remove a new edge. And again for this new case we have to find the shortest path.
+
+Another way of understanding the problem is suppose there are cities connected to each other.
+And every day one of the roads gets blocked because of heavy rain. what is the shortest path every day from city s to e.
+Also one more important thing to note that each road can be used only once.
+But there could be more than 1 direct road from city a to city b.
+
+FInd the shortest path distance from city s to e on a day when all direct roads from city f to city h are blocked. If there is no connecting path return -1
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-16: https://careercup.com/question?id=9619312
+------------------------------------------------------------------------------------------------------------------------
+Given a node in a graph that is reachable, how do you find all the nodes that are reachable ? How would you enable parallel computation of this information ? Given a number of cores, how many threads would you choose ?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-29: https://careercup.com/question?id=8656028
+------------------------------------------------------------------------------------------------------------------------
+Clone a connected undirected graph. Input is a node*. Return the node* of the cloned graph.
+
+struct node
+{
+int value;
+vector<Node*> neighbors;
+}
+------------------------------------------------------------------------------------------------------------------------
+

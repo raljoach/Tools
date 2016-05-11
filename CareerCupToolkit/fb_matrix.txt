@@ -1,0 +1,2196 @@
+------------------------------------------------------------------------------------------------------------------------
+Question 1-1: https://careercup.com/question?id=5722807649435648
+------------------------------------------------------------------------------------------------------------------------
+There are N coins with coordinates (x, y) where x >0 and y >0
+You start at (0, 0) and you can only do steps of form (dx, dy) where dx >0 and dy > 0
+Print the maximum number of coins that you can collect.
+
+Clarification: you can do as many moves as you wish, the point is to collect maximum number of coins. If you are located at position (a, b) you may jump to position (a+dx, b+dy) for all dx > 0 and dy > 0
+
+@krbchd: Your algorithm may output incorrect values. Suppose there are points (5, 7), (5, 8), (5, 9) for y coordinates LIS will output 7, 8, 9, however since these points are on the same x axis, you can choose only one of them.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-2: https://careercup.com/question?id=5652404478410752
+------------------------------------------------------------------------------------------------------------------------
+GIven a string "str" and pair of "N" swapping indices, generate a lexicographically largest string. Swapping indices can be reused any number times.
+
+Eg 1)
+
+String = "abdc"
+
+Indices:
+
+(1,4)
+
+(3,4)
+
+Answer:
+
+cdba, cbad, dbac,dbca
+
+you should print only "dbca" which is lexicographically largest.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-11: https://careercup.com/question?id=5643746207072256
+------------------------------------------------------------------------------------------------------------------------
+Given an undirected graph and a node, modify the graph into a directed graph such that, any path leads to one particular node.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-7: https://careercup.com/question?id=5715650070708224
+------------------------------------------------------------------------------------------------------------------------
+There's a new language which uses the latin alphabet. However, you don't know the order among letters.
+
+It could be:
+a b c d ...
+
+as it could also be:
+
+b e z a m i ...
+
+You receive a list of words lexicographically sorted by the rules of this new language. From this list, derive one valid particular ordering of letters in this language.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-11: https://careercup.com/question?id=5742219382226944
+------------------------------------------------------------------------------------------------------------------------
+Print all paths of a binary tree from root to leaf.
+
+Later, extend the solution to work with graphs, careful attention to cycles which you should print as paths as well (without printing visited nodes twice).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-26: https://careercup.com/question?id=5978392075698176
+------------------------------------------------------------------------------------------------------------------------
+As we know facebook always asks questions from graph theory he asked me this problem to code-
+
+there is a grid of n*n where each cell represent an Island or and some of these are very dangerous so u have to avoid these during path selections.You can move up,down,left ,right.You are given your starting position ,positions of dangerous Islands and position some specific Islands.Your task is to deliver a message to all the specific Islands in minimum number of moves to all specific Islands(NOTE- there are also chances that no moves are possible to cover all specific Island ,in such case you have to tell "NOT POSSIBLE TO DELIVER ALL ",otherwise output minimum moves).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-27: https://careercup.com/question?id=5922416572235776
+------------------------------------------------------------------------------------------------------------------------
+Write code to print all different paths in an undirected graph from a given source to destination with no loop(any node can be at most once in a path ).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-28: https://careercup.com/question?id=6193320829124608
+------------------------------------------------------------------------------------------------------------------------
+Given a undirected graph, source and destination, write the code to find the total number of distinct nodes visited, considering all possible paths.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-11: https://careercup.com/question?id=23672664
+------------------------------------------------------------------------------------------------------------------------
+We have a rectangle with n rows and m columns filled with numbers from 1 to n*m.
+Cell (i,j) of the rectangle is important iff:
+* i = 1 and j = 1 (or)
+*there is an important cell (a,b) such that (a,b) is a neighbor of (i,j) and the number
+on (i,j) is greater than number on cell (a,b) and all of (a,b)'s neighbors except for (
+(i,j) itself
+
+Two cells are considered to be neighbors if they share a common edge between them.
+Unfortunately the number in some of the cells has been erased. We want to write a number to those cells such that the resultant rectangle has all the numbers between 1 to n*m and it contains as many important cells as possible. In case there are several ways to do that, we are interested with the rectangle which is lexicographically smallest.
+A table is lexicographically smaller that the other if the string of its row-major view is lexicographically smaller than the other.
+Input:
+The first line of the input contains two integers n and m, Each of the next n lines contains m tokens. Each token is either an integer between 1 and n*m or '?'.
+Output:
+Print the maximum number of important cells that can be obtained in the first line of the output and print the rectangle in the next n lines.
+
+Constraints:
+1 <=n,m <=6
+
+Sample input #00:
+2 3
+2 ? ?
+? ? 3
+
+Sample output #00:
+3
+2 1 4
+5 6 3
+
+Sample input #01:
+6 6
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+
+Sample output #02:
+24
+1 2 3 13 14 15
+4 6 8 10 11 16
+5 7 9 12 19 17
+28 26 24 22 20 18
+29 27 25 23 21 36
+30 31 32 33 34 35
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-12: https://careercup.com/question?id=23869663
+------------------------------------------------------------------------------------------------------------------------
+A string is called sstring if it consists of lowercase english letters and no two of its consecutive characters are the same.
+
+You are given string s of length n. Calculate the number of sstrings of length that are not lexicographically greater than s.
+Input format
+The only line of input contains the string s. It's length is not greater than 100.
+All characters of input are lowercase english letters.
+
+Output format:
+Print the answer of test modulo 1009 to the only line of output.
+
+Sample input:
+bcd
+
+Sample output:
+653
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-30: https://careercup.com/question?id=15888677
+------------------------------------------------------------------------------------------------------------------------
+Write a program to clone a graph
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-10: https://careercup.com/question?id=14463150
+------------------------------------------------------------------------------------------------------------------------
+A string s is said to be unique if no two characters of s are same.
+A string s1 is producible from s2 by removing some of the characters from s2.
+A string s1 is said to be more beautiful than s2 if length of s1 is more than s2 or if both have same length and s1 is lexicographically greater than s2( ex: ba is more beautiful than ab)
+Input: is a string which can be of maximum 10^6 characters, you have to produce the most beautiful unique string out of the given string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-14: https://careercup.com/question?id=14412669
+------------------------------------------------------------------------------------------------------------------------
+Input:
+3
+3 1 2
+nny
+nnn
+ynn
+output:
+2 1 3
+n size of permutation P.First line of input is n.Second line is the permutation P.A Permutation X is said to be lexicographically smaller than Y if for all digits till i X[i]=Y[i] and for i+1 X[i]<=Y[i]so you can exchange the integers in the given permutation P if character j of line i+2 is 'y' then i th and j th integer in P can be exchanged .
+Output:Lexicographically smallest premutation of the given P using rule
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-22: https://careercup.com/question?id=13364661
+------------------------------------------------------------------------------------------------------------------------
+Suppose you have a graph G(V,E).
+You are supposed to find the shortest path from a vertex 's' to vertex 'e' for 'n' different cases.
+
+In each case one of the edges 'Ei' (any one edge) of the graph will be blocked/deleted only for that case and we have to find the shortest path in the graph with that edge removed.
+
+Guys finding the shortest path is easy. But how can I make the algo so fast that even if I remove one of the edges my algo should still be very fast. O(n log n) or faster.
+Remember we are not deleting the edges permanently. We are just temporary removing one edge per case.
+In each case only one edge is removed.
+Suppose we blocked one edge E in one case. We have to find the shortest path for the graph.
+In next case, we will reconnect the last edge and we will block/remove a new edge. And again for this new case we have to find the shortest path.
+
+Another way of understanding the problem is suppose there are cities connected to each other.
+And every day one of the roads gets blocked because of heavy rain. what is the shortest path every day from city s to e.
+Also one more important thing to note that each road can be used only once.
+But there could be more than 1 direct road from city a to city b.
+
+FInd the shortest path distance from city s to e on a day when all direct roads from city f to city h are blocked. If there is no connecting path return -1
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-16: https://careercup.com/question?id=9619312
+------------------------------------------------------------------------------------------------------------------------
+Given a node in a graph that is reachable, how do you find all the nodes that are reachable ? How would you enable parallel computation of this information ? Given a number of cores, how many threads would you choose ?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-29: https://careercup.com/question?id=8656028
+------------------------------------------------------------------------------------------------------------------------
+Clone a connected undirected graph. Input is a node*. Return the node* of the cloned graph.
+
+struct node
+{
+int value;
+vector<Node*> neighbors;
+}
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-1: https://careercup.com/question?id=5722807649435648
+------------------------------------------------------------------------------------------------------------------------
+There are N coins with coordinates (x, y) where x >0 and y >0
+You start at (0, 0) and you can only do steps of form (dx, dy) where dx >0 and dy > 0
+Print the maximum number of coins that you can collect.
+
+Clarification: you can do as many moves as you wish, the point is to collect maximum number of coins. If you are located at position (a, b) you may jump to position (a+dx, b+dy) for all dx > 0 and dy > 0
+
+@krbchd: Your algorithm may output incorrect values. Suppose there are points (5, 7), (5, 8), (5, 9) for y coordinates LIS will output 7, 8, 9, however since these points are on the same x axis, you can choose only one of them.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-2: https://careercup.com/question?id=5652404478410752
+------------------------------------------------------------------------------------------------------------------------
+GIven a string "str" and pair of "N" swapping indices, generate a lexicographically largest string. Swapping indices can be reused any number times.
+
+Eg 1)
+
+String = "abdc"
+
+Indices:
+
+(1,4)
+
+(3,4)
+
+Answer:
+
+cdba, cbad, dbac,dbca
+
+you should print only "dbca" which is lexicographically largest.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-6: https://careercup.com/question?id=5689294439055360
+------------------------------------------------------------------------------------------------------------------------
+Given a string where in each word letters were randomly shuffled and after that words were written without spaces (lets call it X). Also you have a dictionary. The task is to return all possible strings S that can be transformed into the string X and all words in S are from dictionary.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-8: https://careercup.com/question?id=5653760530448384
+------------------------------------------------------------------------------------------------------------------------
+Task schedule: given a sequence of task like A B C(means 3 different tasks), and a coldtime, which means you need to wait for that much time to start next [same] task. Now----
+
+Input: string, n
+Output: the best task-finishing sequence.
+
+eg. input: AAABBB, 2
+Output: AB_AB_AB
+( "_" represents do nothing and wait)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-9: https://careercup.com/question?id=5728108897370112
+------------------------------------------------------------------------------------------------------------------------
+Given a decimal number, write a function that returns its negabinary (i.e. negative 2-base) representation as a string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-13: https://careercup.com/question?id=4855286160424960
+------------------------------------------------------------------------------------------------------------------------
+Given a random string S and another string T with unique elements, find the minimum consecutive sub-string of S such that it contains all the elements in T.
+example:
+S='adobecodebanc'
+T='abc'
+answer='banc'
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-29: https://careercup.com/question?id=5124942133723136
+------------------------------------------------------------------------------------------------------------------------
+Write a function to check if a string matches a regex patter. Note that you only have to deal with patterns containing "*". Also, note that the pattern can't start with "*".
+
+Some examples:
+isMatch(“aa”,”a”) → false
+isMatch(“aa”,”aa”) → true
+isMatch(“aaa”,”aa”) → false
+isMatch(“aa”, “a*”) → true
+isMatch(“aa”, “*”) → true
+isMatch(“ab”, “*”) → true
+isMatch(“ab”, “*”) → true
+isMatch(“b*a”, “a”) → true
+isMatch(“a*a”, “a”) → true
+isMatch(“aab”, “c*a*b”) → true
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-10: https://careercup.com/question?id=5653027102916608
+------------------------------------------------------------------------------------------------------------------------
+We know a string is Palindrome if it is the same reading from both sides. Now we define the following string also Palindrome:
+
+A man, a plan, a canal, Panama!
+
+Write a code that returns if an string is palindrome and it should return true for above input. (Without directly saying, I should conclude that I have to only consider alphanumerical characters in a string). In addition, we assume the string is very long and we can not keep a copy of this string or even a copy of preprocessed version of this string. Therefore the result should be returned with the first sweep of the string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-15: https://careercup.com/question?id=5741988412391424
+------------------------------------------------------------------------------------------------------------------------
+Permutate a list of string
+this question is supposed permutate the characters instead of who string,
+
+as input example {"red", "fox", "super" }, the expected output is
+
+rfs
+rfu
+rfp
+rfe
+rfr
+ros
+rou
+rop
+roe
+ror
+rxs
+rxu
+rxp
+rxe
+rxr
+efs
+efu
+efp
+efe
+efr
+eos
+eou
+eop
+eoe
+eor
+exs
+exu
+exp
+exe
+exr
+dfs
+dfu
+dfp
+dfe
+dfr
+dos
+dou
+dop
+doe
+dor
+dxs
+dxu
+dxp
+dxe
+dxr
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-25: https://careercup.com/question?id=5671585342029824
+------------------------------------------------------------------------------------------------------------------------
+I needed to develop next system:
+
+We have a lot of servers. Every server generate logs. Every log has two data types: first is numeric metrics. These numeric metrics are integer. Second is strings. We need to collect logs from all servers on other server (storage). Then we have to execute queries and get some data from storage. In our queries we have to use numeric metrics and strings as well. For numerics metrics we have to be able get aggregation data as well.
+
+Develop Storage server, database. Describe how will you scale this system, what database will you use, how will you save data and how will you execute this queries.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-6: https://careercup.com/question?id=5085545090777088
+------------------------------------------------------------------------------------------------------------------------
+Given a string containing letter, digit, and other characters, write a function to check palindrome for only letter and digit. The implementation need to be in-place, no extra memory is allowed to create another string or array.
+For example:
+
+"ABA" is palindrome
+"A!#A" is palindrome
+"A man, a plan, a canal, Panama!" is palindrome
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-9: https://careercup.com/question?id=4911380140392448
+------------------------------------------------------------------------------------------------------------------------
+Input: A string equation that contains numbers, '+' and '*'
+Output: Result as int.
+
+For example:
+Input: 3*5+8 (as String)
+Output: 23 (as int)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-12: https://careercup.com/question?id=5092414932910080
+------------------------------------------------------------------------------------------------------------------------
+You are given a set of unique characters and a string.
+
+Find the smallest substring of the string containing all the characters in the set.
+
+ex:
+Set : [a, b, c]
+String : "abbcbcba"
+
+Result: "cba"
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-3: https://careercup.com/question?id=5723872416497664
+------------------------------------------------------------------------------------------------------------------------
+Given a list of strings, return a list of lists of strings that groups all anagrams.
+
+Ex. given {trees, bike, cars, steer, arcs}
+return { {cars, arcs}, {bike}, {trees, steer} }
+
+m = # of words
+n = length of longest word
+
+I solved this in O(m * n * log n) time.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-10: https://careercup.com/question?id=6009238532915200
+------------------------------------------------------------------------------------------------------------------------
+write an algorithm to decide weather a string is a palindrome.
+Ignore any non-letter characters in the the string.
+Ignore capital/lower case.
+Space complexity O(1)
+
+for example, the following should return true:
+A man, a plan, a canal -- Panama!
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-13: https://careercup.com/question?id=5092486548553728
+------------------------------------------------------------------------------------------------------------------------
+Given two strings, return boolean True/False, if they are only one edit apart.Edit can be insert/delete/update of only one character in the string. Eg:
+
+-True
+xyz,xz
+xyz, xyk
+xy, xyz
+
+
+-False
+xyz, xyz
+xyz,xzy
+x, xyz
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-14: https://careercup.com/question?id=5705581721550848
+------------------------------------------------------------------------------------------------------------------------
+You're given a dictionary of strings, and a key. Check if the key is composed of an arbitrary number of concatenations of strings from the dictionary. For example:
+
+dictionary: "world", "hello", "super", "hell"
+key: "helloworld" --> return true
+key: "superman" --> return false
+key: "hellohello" --> return true
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-19: https://careercup.com/question?id=5705619461898240
+------------------------------------------------------------------------------------------------------------------------
+Given a mapping of alphabets to integers as follows:
+
+1 = A
+2 = B
+3 = C
+...
+26 = Z
+
+Given any combination of the mapping numbers as string, return the number of ways in which the input string can be split into sub-strings and represented as character strings. For e.g. given
+"111" -> "AAA", "AK", "KA" -> 3
+Valid combinations are ({1,1,1}, {1,11},{11,1}) = 3
+"11" -> "AA", "K" -> 2
+Valid combinations are ({1,1},{11}) = 2
+"123" -> "ABC", "LC", "AW" -> 3
+Valid combinations are ({1,2,3},{1,23},{12,3}) = 3
+
+You don't have to return all the mappings, only the number of valid mappings.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-22: https://careercup.com/question?id=5678056593162240
+------------------------------------------------------------------------------------------------------------------------
+Given a function
+
+getRandomTripplet()
+
+which returns a random triplet of letters from a string. You don't know the string using calls to this function you have to correctly guess the string. the length of the string is also given.
+
+Lets say the string is helloworld the function getRandomTriplet will return things like
+
+hlo
+hew
+wld
+owo
+
+the function maintains the relative order of the letters. so it will never return
+
+ohl since h is before o in the string.
+owe since w is after e
+
+The string is not known you are only given length of the string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-23: https://careercup.com/question?id=5667679415304192
+------------------------------------------------------------------------------------------------------------------------
+Give a function
+
+getRandomTripplet()
+
+which returns a random triplet of letters from a string. You don't know the string using calls to this function you have to correctly guess the string. the length of the string is also given.
+
+Lets say the string is helloworld the function getRandomTriplet will return things like
+
+hlo
+hew
+wld
+owo
+
+the function maintains the relative order of the letters. so it will never return
+
+ohl since h is before o in the string.
+owe since w is after e
+
+The string is not known you are only given length of the string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-26: https://careercup.com/question?id=4849108141473792
+------------------------------------------------------------------------------------------------------------------------
+Implement a method called printNonComments() which prints out a extract of text with comments removed.
+
+For example, the input:
+
+hello /* this is a
+multi line comment */ all
+
+Should produce:
+
+hello
+all
+
+You have access to a method called getNextLine() which returns the next line in the input string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-28: https://careercup.com/question?id=5106757177180160
+------------------------------------------------------------------------------------------------------------------------
+Code a function that receives a string composed by words separated by spaces and returns a string where words appear in the same order but than the original string, but every word is inverted.
+Example, for this input string
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-30: https://careercup.com/question?id=5735540389314560
+------------------------------------------------------------------------------------------------------------------------
+Code a function that gets two strings representing binary numbers (so the only possible characters are '1' and '0', and returns a third string representing the sum of the input. The input strings don't necessarily have of the same length.
+Tell the complexity of the solution.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-4: https://careercup.com/question?id=5745799489126400
+------------------------------------------------------------------------------------------------------------------------
+You want to create a staff to use in your martial arts training, and it has to meet some specific requirements.
+
+1. You want it to be composed of two smaller staves of equal length so that you can either use it as a single staff or as two smaller ones.
+
+2. You want the full sized staff's center of gravity to be exactly in the middle of the staff.
+
+You have a very, very long branch from which you can cut the pieces for your staff. The mass of the branch varies significantly throughout it, so you use just any two pieces of the same length. Given a description of the mass throughout the branch, determine the longest staff you can make, then return three integers on a single line, the first two indicating the first index of each half-staff, and the third indicating the length of each half-staff.
+
+The input will be given on a single line as a string of digits [1-9], each digit representing the mass of a section of the branch. All sections are the same size and the maximum length of the string is 500. Here is an example:
+
+41111921111119
+11119 11119
+
+If the indicated sections are cut from the branch they will satisfy your requirements. They are both the same length, and they can be put together as either 9111111119 or 1111991111, both of which have a center of gravity exactly in the center of the staff.
+
+
+Center of gravity can be determined by taking a weighted average of the mass of each section of the staff. Given the following distances and masses:
+Distance: 12345678
+Mass: 22241211
+
+Sum of the mass of each section: 2 + 2 + 2 + 4 + 1 + 2 + 1 + 1 = 15
+Weighted sum of the masses:
+2*1 + 2*2 + 2*3 + 4*4 + 1*5 + 2*6 + 1*7 + 1*8 = 60
+Weighted sum / regular sum = 60 / 15 = 4
+
+This means that the center of mass is in section 4 of the staff. If we wanted to use this staff the center of gravity would need to be (8+1)/2 = 4.5.
+
+Here is an example problem:
+
+131251141231
+---- ----
+
+If we take the sections indicated we get 1312 and 1231. By reversing the first one and putting them together we get 21311231
+
+Sum of the mass of each section: 2 + 1 + 3 + 1 + 1 + 2 + 3 + 1 = 14
+Weight sum of the masses:
+2*1 + 1*2 + 3*3 + 1*4 + 1*5 + 2*6 + 3*7 + 1*8 = 63
+Weighted sum / regular sum = 63 / 14 = 4.5
+
+This puts the center of mass exactly in the center of the staff, for a perfectly balanced staff. There isn't a longer staff that can be made from this, so the answer to this problem is
+
+0 8 4
+
+Because the half-staves begin at indices 0 and 8 (in that order) and each is of length 4.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-5: https://careercup.com/question?id=4793416529477632
+------------------------------------------------------------------------------------------------------------------------
+/**
+* Implement a function OneEditApart with the following signature:
+* bool OneEditApart(string s1, string s2)
+*
+* OneEditApart("cat", "dog") = false
+* OneEditApart("cat", "cats") = true
+* OneEditApart("cat", "cut") = true
+* OneEditApart("cat", "cast") = true
+* OneEditApart("cat", "at") = true
+* OneEditApart("cat", "acts") = false
+* Edit is: insertion, removal, replacement
+*/
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-10: https://careercup.com/question?id=6209523802963968
+------------------------------------------------------------------------------------------------------------------------
+Given a current absolute path, e.g., "/usr/bin/mail", and a relative one, e.g, "../../../etc/xyz/../abc" return the absolute path created from the combination of the first two paths. In the example strings, the answer should be "/etc/abc".
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-15: https://careercup.com/question?id=5762415492857856
+------------------------------------------------------------------------------------------------------------------------
+Imagine x is an operand and * is a binary operator. We say a string of x and * follows Reverse Polish notation if it is a postfix notation.
+
+For example strings xx*, x, and xx*xx** follow Reverse Polish notation.
+
+Given a string of x and *, how many insert, delete, and replace operations are needed to make the string follow the RPN.
+
+For example, xx* need 0 operation to follow RPN since it already follows RPN.
+x*x needs two operations to become xx* which follows RPN.
+*xx* needs one operation to become xx* which follows RPN.
+
+Your algorithm should work for a string of size up to 100.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-23: https://careercup.com/question?id=5729456584916992
+------------------------------------------------------------------------------------------------------------------------
+Given a normal binary tree, write a function to serialize the tree into a string representation (returning the string), and also a function to deserialize a serialized string into the original binary tree.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-24: https://careercup.com/question?id=5119108714594304
+------------------------------------------------------------------------------------------------------------------------
+Given a normal binary tree, write a function to serialize it into a string representation (returning a string), and also a function to deserialize the string into the original binary tree
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-25: https://careercup.com/question?id=6196366774632448
+------------------------------------------------------------------------------------------------------------------------
+A professor wants to see if two students have cheated when writing a paper. Design a function : hasCheated(String s1,String s2, int N) that evaluates to true if two strings have a common substring of length N. Additional question after implementation. Assume you don't have the possibility of using String.contains() and String.substring(). How would you implement this?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-27: https://careercup.com/question?id=4901629824335872
+------------------------------------------------------------------------------------------------------------------------
+Write atof in Java, which converts a string representation of a float (like "342.18E-10") to an actual float without using any built-in parsing functions.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-5: https://careercup.com/question?id=5293306254721024
+------------------------------------------------------------------------------------------------------------------------
+In Java: Write a function in language of your choice that takes in two strings, and returns true if they match. Constraints are as follows: String 1, the text to match to, will be alphabets and digits. String 2, the pattern, will be alphabets, digits, '.' and '*'. '.' means either alphabet or digit will be considered as a "match". "*" means the previous character is repeat 0 or more # of times. For example: Text: Facebook Pattern: F.cebo*k returns true.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-6: https://careercup.com/question?id=4859932243394560
+------------------------------------------------------------------------------------------------------------------------
+Prints all unique subsets of the string.
+Given a string write a function which prints all the subsets of the string. Now make the function to return only unique solutions.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-15: https://careercup.com/question?id=5152893422272512
+------------------------------------------------------------------------------------------------------------------------
+You have a dictionary which is an array of words and array of strings.
+
+Write two functions
+
+1. Prepare the array of strings to be searched in the dictionary
+2. Check if the string contains all valid words or not.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-16: https://careercup.com/question?id=6234634354425856
+------------------------------------------------------------------------------------------------------------------------
+Given "n", generate all valid parenthesis strings of length "2n".
+
+Example:
+Given n=2
+
+Output:
+(())
+()()
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-18: https://careercup.com/question?id=5177378863054848
+------------------------------------------------------------------------------------------------------------------------
+Write a function for retrieving the total number of substring palindromes.
+For example the input is 'abba' then the possible palindromes= a, b, b, a, bb, abba
+So the result is 6.
+
+Updated at 11/11/2013:
+After the interview I got know that the O(n^3) solution is not enough to go to the next round. It would have been better to know before starting implementing the solution unnecessarily ...
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-24: https://careercup.com/question?id=6631993756352512
+------------------------------------------------------------------------------------------------------------------------
+Given a regular expression with characters a-z, ' * ', ' . '
+the task was to find if that string could match another string with characters from: a-z
+where ' * ' can delete the character before it, and ' . ' could match whatever character. ' * ' always appear after a a-z character.
+Example:
+isMatch("a*", "") = true;
+isMatch(".", "") = false;
+isMatch("ab*", "a") = true;
+isMatch("a.", "ab") = true;
+isMatch("a", "a") = true;
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-2: https://careercup.com/question?id=5197969674469376
+------------------------------------------------------------------------------------------------------------------------
+Given a string Sting="ABCSC" Check whether it contains a Substring="ABC"?
+
+1)If no , return "-1".
+2)If yes , remove the substring from string and return "SC".
+use very simple code and concept(ALGORITHM)..
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-7: https://careercup.com/question?id=6287528252407808
+------------------------------------------------------------------------------------------------------------------------
+A k-palindrome is a string which transforms into a palindrome on removing at most k characters.
+
+Given a string S, and an interger K, print "YES" if S is a k-palindrome; otherwise print "NO".
+Constraints:
+S has at most 20,000 characters.
+0<=k<=30
+
+Sample Test Case#1:
+Input - abxa 1
+Output - YES
+Sample Test Case#2:
+Input - abdxa 1
+Output - No
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-11: https://careercup.com/question?id=23672664
+------------------------------------------------------------------------------------------------------------------------
+We have a rectangle with n rows and m columns filled with numbers from 1 to n*m.
+Cell (i,j) of the rectangle is important iff:
+* i = 1 and j = 1 (or)
+*there is an important cell (a,b) such that (a,b) is a neighbor of (i,j) and the number
+on (i,j) is greater than number on cell (a,b) and all of (a,b)'s neighbors except for (
+(i,j) itself
+
+Two cells are considered to be neighbors if they share a common edge between them.
+Unfortunately the number in some of the cells has been erased. We want to write a number to those cells such that the resultant rectangle has all the numbers between 1 to n*m and it contains as many important cells as possible. In case there are several ways to do that, we are interested with the rectangle which is lexicographically smallest.
+A table is lexicographically smaller that the other if the string of its row-major view is lexicographically smaller than the other.
+Input:
+The first line of the input contains two integers n and m, Each of the next n lines contains m tokens. Each token is either an integer between 1 and n*m or '?'.
+Output:
+Print the maximum number of important cells that can be obtained in the first line of the output and print the rectangle in the next n lines.
+
+Constraints:
+1 <=n,m <=6
+
+Sample input #00:
+2 3
+2 ? ?
+? ? 3
+
+Sample output #00:
+3
+2 1 4
+5 6 3
+
+Sample input #01:
+6 6
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+? ? ? ? ? ?
+
+Sample output #02:
+24
+1 2 3 13 14 15
+4 6 8 10 11 16
+5 7 9 12 19 17
+28 26 24 22 20 18
+29 27 25 23 21 36
+30 31 32 33 34 35
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-12: https://careercup.com/question?id=23869663
+------------------------------------------------------------------------------------------------------------------------
+A string is called sstring if it consists of lowercase english letters and no two of its consecutive characters are the same.
+
+You are given string s of length n. Calculate the number of sstrings of length that are not lexicographically greater than s.
+Input format
+The only line of input contains the string s. It's length is not greater than 100.
+All characters of input are lowercase english letters.
+
+Output format:
+Print the answer of test modulo 1009 to the only line of output.
+
+Sample input:
+bcd
+
+Sample output:
+653
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-16: https://careercup.com/question?id=19587667
+------------------------------------------------------------------------------------------------------------------------
+Pattern Matching
+----------------
+Characters: a to z
+Operators: * +
+* -> matches zero or more (of the character that occurs previous to this operator)
++ -> matches one or more (of the character that occurs previous to this operator)
+
+Output if a given pattern matches a string.
+Example:
+pattern:a*b
+string:aaab b, ab, aab, aaab, ab
+output:1
+
+pattern:a+aabc
+string:ab aabc, aaabc, aaaabc ..
+output:0
+
+pattern:aa*b*ab+
+string:aab aab, aabab, aaaabbab
+output:1
+
+pattern: a+a*b*
+string: a ab, aab, aaabb
+output: 1
+
+Valid Assumptions: Please assume that both the pattern and string input are valid
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-17: https://careercup.com/question?id=19300678
+------------------------------------------------------------------------------------------------------------------------
+If a=1, b=2, c=3,....z=26. Given a string, find all possible codes that string can generate. Give a count as well as print the strings.
+
+For example:
+Input: "1123". You need to general all valid alphabet codes from this string.
+
+Output List
+aabc //a = 1, a = 1, b = 2, c = 3
+kbc // since k is 11, b = 2, c= 3
+alc // a = 1, l = 12, c = 3
+aaw // a= 1, a =1, w= 23
+kw // k = 11, w = 23
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-22: https://careercup.com/question?id=16381662
+------------------------------------------------------------------------------------------------------------------------
+Write a function that accepts two or more strings and returns the longest common substring in all of them.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-23: https://careercup.com/question?id=16239684
+------------------------------------------------------------------------------------------------------------------------
+Write a function that takes a string and returns true if the entire string is a palindrome, otherwise return false. The function should be case-insensitive and ignore any whitespace or punctuation.
+
+For example, return true for:
+"A man, a plan, a canal: Panama."
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-24: https://careercup.com/question?id=15944701
+------------------------------------------------------------------------------------------------------------------------
+Implement this Java function:
+
+int findNeedleInHaystack(String haystack, String needle)
+
+If needle is a substring of haystack, it should return the index of needle.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-4: https://careercup.com/question?id=15538686
+------------------------------------------------------------------------------------------------------------------------
+Convert a string of Roman numerals to an integer in O(n) time
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-5: https://careercup.com/question?id=15501897
+------------------------------------------------------------------------------------------------------------------------
+This Question was asked in written round on one of the online coding round, The Question was to code this. Question is as follows.
+
+You want to create a staff to use in your martial arts training, and it has to meet some specific requirements.
+
+You want it to be composed of two smaller staves of equal length so that you can either use it as a single staff or as two smaller ones.
+
+You want the full sized staff's center of gravity to be exactly in the middle of the staff.
+
+You have a very, very long branch from which you can cut the pieces for your staff. The mass of the branch varies significantly throughout it, so you use just any two pieces of the same length. Given a description of the mass throughout the branch, determine the longest staff you can make, then return three integers on a single line, the first two indicating the first index of each half-staff, and the third indicating the length of each half-staff.
+
+The input will be given on a single line as a string of digits [1-9], each digit representing the mass of a section of the branch. All sections are the same size and the maximum length of the string is 500. Here is an example:
+
+41111921111119
+11119 11119
+
+If the indicated sections are cut from the branch they will satisfy your requirements. They are both the same length, and they can be put together as either 9111111119 or 1111991111, both of which have a center of gravity exactly in the center of the staff.
+
+Center of gravity can be determined by taking a weighted average of the mass of each section of the staff. Given the following distances and masses: Distance: 12345678 Mass: 22241211
+
+Sum of the mass of each section: 2 + 2 + 2 + 4 + 1 + 2 + 1 + 1 = 15 Weighted sum of the masses: 2*1 + 2*2 + 2*3 + 4*4 + 1*5 + 2*6 + 1*7 + 1*8 = 60 Weighted sum / regular sum = 60 / 15 = 4
+
+This means that the center of mass is in section 4 of the staff. If we wanted to use this staff the center of gravity would need to be (8+1)/2 = 4.5.
+
+Here is an example problem:
+
+131251141231 ---- ----
+
+If we take the sections indicated we get 1312 and 1231. By reversing the first one and putting them together we get 21311231
+
+Sum of the mass of each section: 2 + 1 + 3 + 1 + 1 + 2 + 3 + 1 = 14 Weight sum of the masses: 2*1 + 1*2 + 3*3 + 1*4 + 1*5 + 2*6 + 3*7 + 1*8 = 63 Weighted sum / regular sum = 63 / 14 = 4.5
+
+This puts the center of mass exactly in the center of the staff, for a perfectly balanced staff. There isn't a longer staff that can be made from this, so the answer to this problem is
+
+0 8 4
+
+Because the half-staves begin at indices 0 and 8 (in that order) and each is of length 4
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-7: https://careercup.com/question?id=15468738
+------------------------------------------------------------------------------------------------------------------------
+Given an expression (in single variable) like 4x+13(x-(4x+x/3)) = 9, evaluate x
+The expression is a string and the variable is always x.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-10: https://careercup.com/question?id=15419952
+------------------------------------------------------------------------------------------------------------------------
+Given a hashmap M which is a mapping of characters to arrays of substitute characters, and an input string S, return an array of all possible mutations of S (where any character in S can be substituted with one of its substitutes in M, if it exists).
+
+What is the time complexity? What is the space complexity? Can you optimize either?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-12: https://careercup.com/question?id=15420859
+------------------------------------------------------------------------------------------------------------------------
+Write a program to sum two binary numbers represented as strings.
+
+Input: "110", "01101"
+Output: "10011"
+
+Method signature:
+public String addBinaryNumbers(String num1, String num2);
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-14: https://careercup.com/question?id=15317787
+------------------------------------------------------------------------------------------------------------------------
+Print all the permutaion of a given string.
+
+1) explain time\space complexity?
+
+2) how can you improve time\space complexity?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-16: https://careercup.com/question?id=15011669
+------------------------------------------------------------------------------------------------------------------------
+Got FB interview questions is not difficult, basically, he is asking to count number of identical chars in a given string with with some special case handling, and return the number with highest count, question is pretty long leaving you to dig an algorithm.
+
+Etc, given string "coffee tuffee", should return 4.
+
+I was having my usual interview brain freeze, and start doing initializing with int, how silly
+
+well after interview when I cool down, it doesn't take long to figure out as code below, little over weighted algorithm but the most concise I can wrote, someone please give more efficient code.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-23: https://careercup.com/question?id=14942912
+------------------------------------------------------------------------------------------------------------------------
+Determining trending topics
+
+
+How do you think Twitter determines trending topics?
+
+If needed, explain that trending topics are N most common occurring substrings across all tweets in a given time window, which is constantly moving. Later you can expand the question by putting the scale constraint considering the rate at which tweets come in, etc.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-25: https://careercup.com/question?id=14942873
+------------------------------------------------------------------------------------------------------------------------
+Write a recursive procedure, called laceStringsRecur(s1, s2), which also laces together two strings. Your procedure should not use any explicit loop mechanism, such as a for or while loop. We have provided a template of the code; your job is to insert a single line of code in each of the indicated places.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-27: https://careercup.com/question?id=14959819
+------------------------------------------------------------------------------------------------------------------------
+You are given a string that is in roman numeral format.
+Output the integer representation.
+E.G. You're given XIV
+Output 14.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 9-1: https://careercup.com/question?id=14947723
+------------------------------------------------------------------------------------------------------------------------
+Estimate the # of unique strings with limited memory
+Given a large array of strings S = [s1, s2, ... sN], determine Uniq(S) = how many unique strings there are in S.
+(b) How large can N be to solve on one machine using only memory?
+(c*) What if N is too large to fully fit in memory?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 9-20: https://careercup.com/question?id=14762714
+------------------------------------------------------------------------------------------------------------------------
+Given a string and a pattern('.' Matches any single character.'*' Matches zero or more of the preceding element.), find the first substring matching this pattern.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-9: https://careercup.com/question?id=14548838
+------------------------------------------------------------------------------------------------------------------------
+Determine the 10 most frequent words given a terabyte of strings.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-10: https://careercup.com/question?id=14463150
+------------------------------------------------------------------------------------------------------------------------
+A string s is said to be unique if no two characters of s are same.
+A string s1 is producible from s2 by removing some of the characters from s2.
+A string s1 is said to be more beautiful than s2 if length of s1 is more than s2 or if both have same length and s1 is lexicographically greater than s2( ex: ba is more beautiful than ab)
+Input: is a string which can be of maximum 10^6 characters, you have to produce the most beautiful unique string out of the given string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-15: https://careercup.com/question?id=14260662
+------------------------------------------------------------------------------------------------------------------------
+Find the number of substrings of a string that are palindromes.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-21: https://careercup.com/question?id=13382661
+------------------------------------------------------------------------------------------------------------------------
+write a program to print the given string as alphabets in order next integres fallowed by sum
+
+example: CAE2W3A is input and output should be
+
+ACDEW5
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-25: https://careercup.com/question?id=13216725
+------------------------------------------------------------------------------------------------------------------------
+An expression consisting of operands and binary operators can be written in Reverse Polish Notation (RPN) by writing both the operands followed by the operator. For example, 3 + (4 * 5) can be written as "3 4 5 * +".
+
+You are given a string consisting of x's and *'s. x represents an operand and * represents a binary operator. It is easy to see that not all such strings represent valid RPN expressions. For example, the "x*x" is not a valid RPN expression, while "xx*" and "xxx**" are valid expressions. What is the minimum number of insert, delete and replace operations needed to convert the given string into a valid RPN expression?
+
+Input: The first line contains the number of test cases T. T test cases follow. Each case contains a string consisting only of characters x and *.
+
+Output: Output T lines, one for each test case containing the least number of operations needed.
+
+Constraints: 1 <= T <= 100 The length of the input string will be at most 100.
+
+Sample Input:
+
+5
+x
+xx*
+xxx**
+*xx
+xx*xx**
+Sample Output:
+
+0
+0
+0
+2
+0
+Explanation:
+
+For the first three cases, the input expression is already a valid RPN, so the answer is 0. For the fourth case, we can perform one delete, and one insert operation: xx -> xx -> xx
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-26: https://careercup.com/question?id=13225716
+------------------------------------------------------------------------------------------------------------------------
+An expression consisting of operands and binary operators can be written in Reverse Polish Notation (RPN) by writing both the operands followed by the operator. For example, 3 + (4 * 5) can be written as "3 4 5 * +".
+
+You are given a string consisting of x's and *'s. x represents an operand and * represents a binary operator. It is easy to see that not all such strings represent valid RPN expressions. For example, the "x*x" is not a valid RPN expression, while "xx*" and "xxx**" are valid expressions. What is the minimum number of insert, delete and replace operations needed to convert the given string into a valid RPN expression?
+
+Input: The first line contains the number of test cases T. T test cases follow. Each case contains a string consisting only of characters x and *.
+
+Output: Output T lines, one for each test case containing the least number of operations needed.
+
+Constraints: 1 <= T <= 100 The length of the input string will be at most 100.
+
+Sample Input:
+
+5
+x
+xx*
+xxx**
+*xx
+xx*xx**
+Sample Output:
+
+0
+0
+0
+2
+0
+Explanation:
+
+For the first three cases, the input expression is already a valid RPN, so the answer is 0. For the fourth case, we can perform one delete, and one insert operation: xx -> xx -> xx
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-29: https://careercup.com/question?id=12718665
+------------------------------------------------------------------------------------------------------------------------
+String Reduction
+
+Given a string consisting of a,b and c's, we can perform the following operation: Take any two adjacent distinct characters and replace it with the third character. For example, if 'a' and 'c' are adjacent, they can replaced with 'b'. What is the smallest string which can result by applying this operation repeatedly?
+
+Input:
+The first line contains the number of test cases T. T test cases follow. Each case contains the string you start with.
+
+Output:
+Output T lines, one for each test case containing the smallest length of the resultant string after applying the operations optimally.
+
+Constraints:
+1 <= T <= 100
+The string will have at most 100 characters.
+
+Sample Input:
+3
+cab
+bcab
+ccccc
+
+Sample Output:
+2
+1
+5
+
+Explanation:
+For the first case, you can either get cab -> cc or cab -> bb, resulting in a string of length 2.
+For the second case, one optimal solution is: bcab -> aab -> ac -> b. No more operations can be applied and the resultant string has length 1.
+For the third case, no operations can be performed and so the answer is 5.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-4: https://careercup.com/question?id=12332722
+------------------------------------------------------------------------------------------------------------------------
+Given a list of words, L, that are all the same length, and a string, S, find the starting position of the substring of S that is a concatenation of each word in L exactly once and without any intervening characters. This substring will occur exactly once in S..
+
+.
+
+Example:.
+
+L: "fooo", "barr", "wing", "ding", "wing".
+
+S: "lingmindraboofooowingdingbarrwingmonkeypoundcake".
+
+fooowingdingbarrwing.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-14: https://careercup.com/question?id=9608562
+------------------------------------------------------------------------------------------------------------------------
+Gattaca
+You have a DNA string that you wish to analyze. Of particular interest is which intervals of the string represent individual genes. You have a number of "gene predictions", each of which assigns a score to an interval within the DNA string, and you want to find the subset of predictions such that the total score is maximized while avoiding overlaps. A gene prediction is a triple of the form (start, stop, score). start is the zero-based index of the first character in the DNA string contained in the gene. stop is the index of the last character contained in the gene. score is the score for the gene.
+
+
+
+Input Specification
+Your program will be passed the name of an input file on the command line. The contents of that file are as follows.
+
+The first line of the input contains only n, the length of the DNA string you will be given.
+
+The next ceiling(n / 80) lines each contain string of length 80 (or n % 80 for the last line) containing only the characters 'A', 'C', 'G', and 'T'. Concatenate these lines to get the entire DNA strand.
+
+The next line contains only g, the number of gene predictions you will be given.
+
+The next g lines each contain a whitespace-delimited triple of integers of the form
+<start> <stop> <score> representing a single gene prediction. No gene predictions will exceed the bounds of the DNA string or be malformed (start is non-negative and no more than stop, stop never exceeds n - 1).
+
+Example Input:
+100
+GAACTATCGCCCGTGCGCATCGCCCGTCCGACCGGCCGTAAGTCTATCTCCCGAGCGGGCGCCCGATCTCAAGTGCACCT
+CACGGCCTCACGACCGTGAG
+8
+43 70 27
+3 18 24
+65 99 45
+20 39 26
+45 74 26
+10 28 20
+78 97 23
+0 9 22
+
+
+
+Output Specification
+Print to standard out the score of the best possible subset of the gene predictions you are given such that no single index in the DNA string is contained in more than one gene prediction, followed by a newline. The total score is simply the sum of the scores of the gene predictions included in your final result.
+
+When constructing your output, you may only consider genes exactly as they are described in the input. If you find the contents of a gene replicated elsewhere in the DNA string, you are not allowed to treat the second copy as a viable gene. Your solution must be fast and efficient to be considered correct by the robot.
+
+Example Output:
+100
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-15: https://careercup.com/question?id=4470681
+------------------------------------------------------------------------------------------------------------------------
+Telephone Dir lookup:
+Given mapping: number to letters (just like on the telephone buttons)
+i/p: digit string e.g. "1234"
+1. o/p: all possible letter strings based on the mapping.
+
+2. o/p only those strings that are in a given dictionary. (and length of the dictionary is small.)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-21: https://careercup.com/question?id=4425679
+------------------------------------------------------------------------------------------------------------------------
+"Count and Say problem" Write a code to do following:
+n String to print
+0 1
+1 1 1
+2 2 1
+3 1 2 1 1
+...
+Base case: n = 0 print "1"
+for n = 1, look at previous string and write number of times a digit is seen and the digit itself. In this case, digit 1 is seen 1 time in a row... so print "1 1"
+for n = 2, digit 1 is seen two times in a row, so print "2 1"
+for n = 3, digit 2 is seen 1 time and then digit 1 is seen 1 so print "1 2 1 1"
+for n = 4 you will print "1 1 1 2 2 1"
+
+Consider the numbers as integers for simplicity. e.g. if previous string is "10 1" then the next will be "1 10 1 1" and the next one will be "1 1 1 10 2 1"
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-24: https://careercup.com/question?id=4079975
+------------------------------------------------------------------------------------------------------------------------
+Input a string and a pattern having . and *
+Output: whether the string fully matches the pattern
+. match any char, * means matching 0 or more times.
+Example:
+input "a", "." => match
+input "abc", ".*" => match
+input "abcd", "a.*d" => match
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-25: https://careercup.com/question?id=4033979
+------------------------------------------------------------------------------------------------------------------------
+Input:
+Either an object array having integer, string and boolean, like
+{"abc", "ab,c", 10, true, false}
+Or a hash table like
+{"a1":"abc","t":true,"e":123}
+
+Output:
+If object array, output
+"abc"
+10
+true
+
+If hash, output
+"a1":"abc"
+"t" : true
+"e" : 123
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-1: https://careercup.com/question?id=413784
+------------------------------------------------------------------------------------------------------------------------
+Implement copy-on-write string class.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-11: https://careercup.com/question?id=83753
+------------------------------------------------------------------------------------------------------------------------
+Write a program to reverse a string and use it as a subroutine to reverse each word in a line
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-17: https://careercup.com/question?id=56909
+------------------------------------------------------------------------------------------------------------------------
+Code a function 'dedupe' that removes duplicate characters from a string.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-1: https://careercup.com/question?id=5722807649435648
+------------------------------------------------------------------------------------------------------------------------
+There are N coins with coordinates (x, y) where x >0 and y >0
+You start at (0, 0) and you can only do steps of form (dx, dy) where dx >0 and dy > 0
+Print the maximum number of coins that you can collect.
+
+Clarification: you can do as many moves as you wish, the point is to collect maximum number of coins. If you are located at position (a, b) you may jump to position (a+dx, b+dy) for all dx > 0 and dy > 0
+
+@krbchd: Your algorithm may output incorrect values. Suppose there are points (5, 7), (5, 8), (5, 9) for y coordinates LIS will output 7, 8, 9, however since these points are on the same x axis, you can choose only one of them.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-4: https://careercup.com/question?id=5643607445864448
+------------------------------------------------------------------------------------------------------------------------
+Given an array and a number, add it in such a way where array is [0,0,1] and number is 4 output will be [0,0,5]
+
+Example 2 :
+array is [1] and number is 9 output will be [1,0]
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-7: https://careercup.com/question?id=5763975330398208
+------------------------------------------------------------------------------------------------------------------------
+Given two arrays/Lists (choose whatever you want to) with sorted and non intersecting intervals. Merge them to get a new sorted non intersecting array/list.
+
+Eg:
+Given:
+Arr1 = [3-11, 17-25, 58-73];
+Arr2 = [6-18, 40-47];
+
+Wanted:
+Arr3 = [3-25, 40-47, 58-73];
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-15: https://careercup.com/question?id=5681862682869760
+------------------------------------------------------------------------------------------------------------------------
+Given an array of positive integers (excluding zero) and a target number. Detect whether there is a set of consecutive elements in the array that add up to the target.
+
+Example: a = {1, 3, 5, 7, 9}
+target = 8
+
+output = true ({3, 5})
+
+or target = 15
+output = true : {3, 5, 8}
+
+but if target = 6, output would be false. since 1 and 5 are not next to each other.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-16: https://careercup.com/question?id=5767394003779584
+------------------------------------------------------------------------------------------------------------------------
+Given an array of integers. Modify the array by moving all the zeros to the end (right side). The order of the other elements doesn't matter.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-18: https://careercup.com/question?id=5180595304923136
+------------------------------------------------------------------------------------------------------------------------
+Given predicted stock prices for next n days for a stock e.g : 10, 30, 42, 15, 20, 50, 10, 25 find the maximum profit that can be made with a single buy-sell transaction. If no profit can be made return 0. In the example buying at 15 and selling at 50 gives maximum profit. Note that the two prices are neither minimum nor maximum in the array.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-19: https://careercup.com/question?id=5756151524229120
+------------------------------------------------------------------------------------------------------------------------
+We have an array of objects A and an array of indexes B. Reorder objects in array A with given indexes in array B. Do not change array A's length.
+
+example:
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-22: https://careercup.com/question?id=5727804001878016
+------------------------------------------------------------------------------------------------------------------------
+Given an array of positive, unique, increasingly sorted numbers A, e.g. A = [1, 2, 3, 5, 6, 8, 9, 11, 12, 13]. Given a positive value K, e.g. K = 3. Output all pairs in A that differ exactly by K.
+e.g. 2, 5
+3, 6
+5, 8
+6, 9
+8, 11
+9, 12
+what is the runtime for your code?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-23: https://careercup.com/question?id=5154205616570368
+------------------------------------------------------------------------------------------------------------------------
+You are given a permutation arr[N]. E.g. arr[3] = {2, 1, 0} or arr[5] = {0,1,2,4,3};
+Then you can prepare somehow and then start serving requests: request(a, b, k) = sorted(arr[a:b])[k], that is, k-th order statistic on slice [a:b] of arr.
+E.g. if arr is [3,4,5,0,1,2] and a = 2 and b = 5, then arr[a:b] = [5,0,1] and let k = 2, so we sort it - get [0,1,5] and take k-th element, that is - 5.
+
+Implement request(a, b, k) function. You can preprocess input data, that is, assume there will be only one array and many request() calls.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 1-30: https://careercup.com/question?id=6207499378098176
+------------------------------------------------------------------------------------------------------------------------
+Given an array of integer, find the maximum drop between two array elements, given that second element comes after the first one.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-1: https://careercup.com/question?id=5088794078347264
+------------------------------------------------------------------------------------------------------------------------
+On a given array with N numbers, find subset of size M (exactly M elements) that equal to SUM.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-5: https://careercup.com/question?id=5181387768332288
+------------------------------------------------------------------------------------------------------------------------
+Given an array of contacts with phone numbers/emails you should detect and union identical contacts.
+
+For example, given the following contacts array:
+
+[ [ "John", "john@gmail.com", "john@fb.com"],
+[ "Dan", "dan@gmail.com", "+1234567"],
+[ "john123", "+5412312", "john123@skype.com"],
+[ "john1985", "+5412312", "john@fb.com"] ]
+
+We can see that john1985, John and john123 are the same person by their contact information.
+
+We should output
+
+[[ 0, 2, 3], [1]] (0,2,3 are the same person and 1 is another one)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-6: https://careercup.com/question?id=5160350129324032
+------------------------------------------------------------------------------------------------------------------------
+Search in a sorted rotated array.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-9: https://careercup.com/question?id=5183602746720256
+------------------------------------------------------------------------------------------------------------------------
+Given array A of size N, using function Random(returns random number between 0 and 1) implement function that will return array of size N with randomly shuffled elements of the array A.
+You shoul give only algo.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-13: https://careercup.com/question?id=5164359737147392
+------------------------------------------------------------------------------------------------------------------------
+calculate minimum h-index for a sorted integer array(http://en.wikipedia.org/wiki/H-index)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-16: https://careercup.com/question?id=5170706490851328
+------------------------------------------------------------------------------------------------------------------------
+A 2D array filled with integer, define a flow from one point to its neighbor only if the value of current point is not less than its neighbor's value. Consider up edge and left edge as east coast, bottom edge and right edge as west coast, find all position that it can flow to east coast and west cost both
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-17: https://careercup.com/question?id=5637037128417280
+------------------------------------------------------------------------------------------------------------------------
+Sort an integer array with three functions: findMin(), findMedium(), findMax().
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-23: https://careercup.com/question?id=5631319184769024
+------------------------------------------------------------------------------------------------------------------------
+given an array (list) of integers return true(boolean function) if two of the numbers add to 12.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 2-26: https://careercup.com/question?id=5113392333324288
+------------------------------------------------------------------------------------------------------------------------
+Given an array such that every next element differs from the previous by +/- 1. (i.e. a[i+1] = a[i] +/-1 ) Find the local max OR min in O(1) time. The interviewer mentioned one more condition that the min or max should be non-edge elements of the array
+Example: 1 2 3 4 5 4 3 2 1 -> Local max is 5
+1 2 3 4 5 -> No local max or min exists
+5 4 3 2 1 -> No local max or min exists
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-1: https://careercup.com/question?id=5162862051852288
+------------------------------------------------------------------------------------------------------------------------
+You are given a 2d rectangular array of positive integers representing the height map of a continent. The "Pacific ocean" touches the left and top edges of the array and the "Atlantic ocean" touches the right and bottom edges.
+- Find the "continental divide". That is, the list of grid points where water can flow either to the Pacific or the Atlantic.
+Water can only flow from a cell to another one with height equal or lower.
+
+Example:
+
+Pacific ~ ~ ~ ~ ~ |__
+~ 1 2 2 3 (5) ~
+~ 3 2 3 (4)(4) ~
+~ 2 4 (5) 3 1 ~
+~ (6)(7) 1 4 5 ~
+__ (5) 1 1 2 4 ~
+|~ ~ ~ ~ ~ Atlantic
+
+The answer would be the list containing the coordinates of all circled cells:
+[(4,0), (3,1), (4,1), (2,2), (0,3), (1,3), (0,4)]
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-5: https://careercup.com/question?id=6305076727513088
+------------------------------------------------------------------------------------------------------------------------
+Question: Given a sequence of positive integers A and an integer T, return whether there is a continuous sequence of A that sums up to exactly T
+Example
+[23, 5, 4, 7, 2, 11], 20. Return True because 7 + 2 + 11 = 20
+[1, 3, 5, 23, 2], 8. Return True because 3 + 5 = 8
+[1, 3, 5, 23, 2], 7 Return False because no sequence in this array adds up to 7
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-6: https://careercup.com/question?id=5085545090777088
+------------------------------------------------------------------------------------------------------------------------
+Given a string containing letter, digit, and other characters, write a function to check palindrome for only letter and digit. The implementation need to be in-place, no extra memory is allowed to create another string or array.
+For example:
+
+"ABA" is palindrome
+"A!#A" is palindrome
+"A man, a plan, a canal, Panama!" is palindrome
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-14: https://careercup.com/question?id=6051351341563904
+------------------------------------------------------------------------------------------------------------------------
+Completely blew it on this question today.
+
+1.) Given an array, find the maximum difference between two array elements given the second element comes after the first.
+
+For example.
+
+array = [1,2,3,4,5,6,7]
+
+We can take the difference between 2 and 1 (2-1), but not the different between 1 and 2 (1-2).
+
+This question is super easy, I solved it within minutes of getting of the phone. I came up with an O(n^2) solution over the phone. My improved solution was O(n).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-24: https://careercup.com/question?id=5736292639834112
+------------------------------------------------------------------------------------------------------------------------
+Given an array of integers, return true if there're 3 numbers adding up to zero (repetitions are allowed)
+{10, -2, -1, 3} -> true
+{10, -2, 1} -> true -2 + 1 +1 =0
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-28: https://careercup.com/question?id=5129701993480192
+------------------------------------------------------------------------------------------------------------------------
+Given an array of ages (integers) sorted lowest to highest, output the number of occurrences for each age.
+For instance:
+[8,8,8,9,9,11,15,16,16,16]
+should output something like:
+8: 3
+9: 2
+11: 1
+15: 1
+16: 3
+
+This should be done in less than O(n).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-1: https://careercup.com/question?id=5080405046722560
+------------------------------------------------------------------------------------------------------------------------
+An efficient way to sort patient files in an array of just 3 types 'High-importance', 'Mid-importance', 'Low-importance' which are in an arbitrary order (unsorted).
+
+The output preference should start with the highest.
+
+1. High-importance
+
+2. Mid-importance
+
+3. Low-importance
+
+
+
+[high,low,low,med,high,low]
+
+ps I was told to take advantage of the fact that they are just only 3 types.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-5: https://careercup.com/question?id=5728188153987072
+------------------------------------------------------------------------------------------------------------------------
+You are given an array of non-negative integers (0, 1, 2 etc). The value in each element represents the number of hops you may take to the next destination. Write a function that determines when you start from the first element whether you will be able to reach the last element of the array.
+
+if a value is 3, you can take either 0, 1, 2 or 3 hops.
+
+For eg: for the array with elements 1, 2, 0, 1, 0, 1, any route you take from the first element, you will not be able to reach the last element.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-6: https://careercup.com/question?id=5668212962230272
+------------------------------------------------------------------------------------------------------------------------
+Given an array of integers.
+
+Move all non-zero elements to the left of all zero elements.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-11: https://careercup.com/question?id=5760235918589952
+------------------------------------------------------------------------------------------------------------------------
+Suppose we have array of N numbers. We will define N functions on this array. Each function will return the sum of all numbers in the array from Li to Ri ( Li is left index, Ri is right index). Now we have 2 types of queries:
+
+Type1: 1 x y Change the xth element of the array to y
+Type2: 2 l r Return the sum of all functions from m to n.
+
+Input type:
+First Line is the size of the array i.e. N
+
+Next Line contains N space separated numbers Ai denoting the array
+
+Next N line follows denoting Li and Ri for each functions.
+
+Next Line contains an integer Q , number of queries to follow.
+
+Next Q line follows , each line containing a query of Type 1 or Type 2
+
+Here is an example:
+Input:
+5
+1 2 3 4 5
+1 2
+3 4
+1 4
+1 5
+3 5
+5
+1 1 5
+2 2 4
+2 1 3
+1 4 5
+2 1 5
+
+Output:
+40
+28
+63
+
+Explanation:
+Function 1 is sum of values from index 1 to index 2 = 1+2=3
+So , F1=3
+Similarly, F2=3+4=7
+F3=1+2+3+4=10
+F4=15
+F5=12
+
+Now when I query 1 1 5
+means it is type 1 query, so we replace value at index 1 by 5.
+So our new array is,
+5 2 3 4 5
+and
+F1=7
+F2=7(unchanged)
+F3=14
+F4=19
+F5=12(unchanged)
+
+Then next query is 2 2 4
+means give sum of all functions from index 2 to 4.
+So, ans= 7+14+19 =40 (output 1)
+
+Similarly are other 2 outputs.
+Index are 1 based in example.
+Comment me if you are not clear with question.
+
+Edit: I know one can do it with naive approach or using segment tree. But they wanted more faster way to do it.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-16: https://careercup.com/question?id=5652354158297088
+------------------------------------------------------------------------------------------------------------------------
+You're given an array of integers(eg [3,4,7,1,2,9,8]) Find the index of values that satisfy A+B = C + D, where A,B,C & D are integers values in the array.
+
+Eg: Given [3,4,7,1,2,9,8] array
+The following
+3+7 = 1+ 9 satisfies A+B=C+D
+so print (0,2,3,5)
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-17: https://careercup.com/question?id=5197316961075200
+------------------------------------------------------------------------------------------------------------------------
+(To write in Objective-C; I will write the EXACT question)
+
+Given a dictionary of words, return an array of the words whose match. (i.e. pattern "c.t" match with "cat", "cut", etc. because the dot notation stand for ANY character).
+
+
+SUGGEST: use suffix tree, for(for()) is not a good solution.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-18: https://careercup.com/question?id=5659765149532160
+------------------------------------------------------------------------------------------------------------------------
+Given an array of positive integers that represents possible points a team could score in an individual play. Now there are two teams play against each other. Their final scores are S and S'. How would you compute the maximum number of times the team that leads could have changed?
+For example, if S=10 and S'=6. The lead could have changed 4 times:
+Team 1 scores 2, then Team 2 scores 3 (lead change);
+Team 1 scores 2 (lead change), Team 2 score 0 (no lead change);
+Team 1 scores 0, Team 2 scores 3 (lead change);
+Team 1 scores 3, Team 2 scores 0 (lead change);
+Team 1 scores 3, Team 2 scores 0 (no lead change).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-21: https://careercup.com/question?id=5764338593824768
+------------------------------------------------------------------------------------------------------------------------
+Given an array of integers. We have to find the max element of the array, which is at multiple places in the array and return any one of the indices randomly.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 4-27: https://careercup.com/question?id=5182821194792960
+------------------------------------------------------------------------------------------------------------------------
+/*
+Write an algorithm that brings all nonzero elements to the left of the array, and returns the number of nonzero elements.
+
+Example input: [ 1, 0, 2, 0, 0, 3, 4 ]
+Example output: 4
+
+[1, 4, 2, 3, 0, 0, 0]
+
+* The algorithm should operate in place, i.e. shouldn't create a new array.
+* The order of nonzero elements does not matter
+*/
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-1: https://careercup.com/question?id=5086256895623168
+------------------------------------------------------------------------------------------------------------------------
+Code a function that receives an array with duplicates and returns a new array keeping the original order of the elements but with the duplicates removed.
+
+For example, if the input were
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-6: https://careercup.com/question?id=5654505932718080
+------------------------------------------------------------------------------------------------------------------------
+Given an array of words, write a method that determines whether there are any words in this array that are anagrams of each other.
+
+Sample #1: @[@"bag", @"bat", @"tab"]; // output TRUE
+
+Sample #2: @[@"gab", @"bat", @"laf"]; // output FALSE
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-16: https://careercup.com/question?id=4909367207919616
+------------------------------------------------------------------------------------------------------------------------
+WAP to modify the array such that arr[I] = arr[arr[I]].
+Do this in place i.e. with out using additional memory.
+
+example : if a = {2,3,1,0}
+o/p = a = {1,0,3,2}
+
+Note : The array contains 0 to n-1 integers.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-22: https://careercup.com/question?id=4713484755402752
+------------------------------------------------------------------------------------------------------------------------
+Given two arrays of sorted integers, merge them keeping in mind that there might be common elements in the arrays and that common elements must only appear once in the merged array.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-9: https://careercup.com/question?id=6026101998485504
+------------------------------------------------------------------------------------------------------------------------
+Given an unordered array of positive integers, create an algorithm that makes sure no group of integers of size bigger than M have the same integers.
+
+Input: 2,1,1,1,3,4,4,4,5 M = 2
+Output: 2,1,1,3,1,4,4,5,4
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-15: https://careercup.com/question?id=5152893422272512
+------------------------------------------------------------------------------------------------------------------------
+You have a dictionary which is an array of words and array of strings.
+
+Write two functions
+
+1. Prepare the array of strings to be searched in the dictionary
+2. Check if the string contains all valid words or not.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-20: https://careercup.com/question?id=5690879515820032
+------------------------------------------------------------------------------------------------------------------------
+Given an array, remove the duplicates and return a unique array keeping the first occurrence of the duplicates and the order.
+
+[@2, @1, @3, @1, @2] --> [@2, @1, @3]
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 6-29: https://careercup.com/question?id=5435439490007040
+------------------------------------------------------------------------------------------------------------------------
+// merge sorted arrays 'a' and 'b', each with 'length' elements,
+// in-place into 'b' to form a sorted result. assume that 'b'
+// has 2*length allocated space.
+// e.g. a = [1, 3, 5], b = [2, 4, 6] => b = [1, 2, 3, 4, 5, 6]
+
+//how to do it without rearanging the b array
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-3: https://careercup.com/question?id=5761467236220928
+------------------------------------------------------------------------------------------------------------------------
+Given an array of randomly sorted integers and an integer k, write a function which returns boolean True if a pair of numbers exists in the array such that A[i] + A[j] = k and False otherwise. Provide an O(N) and an O(N log N) solution.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-5: https://careercup.com/question?id=4852029923000320
+------------------------------------------------------------------------------------------------------------------------
+You are given an integer K, and a sorted array as an input which has been rotated about an unknown pivot. For example, 4 5 6 7 8 9 1 2 3.
+We need to write a function which should return the index of K in the array, if K is present, else return -1.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-8: https://careercup.com/question?id=5172027535130624
+------------------------------------------------------------------------------------------------------------------------
+Given an array write a function to print all continuous subsequences in the array which sum of 0.
+e.g:
+Input:
+Array = [-1, -3, 4, 5, 4]
+output:
+-1, -3, 4
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-9: https://careercup.com/question?id=5172577290944512
+------------------------------------------------------------------------------------------------------------------------
+Given an array write a function to print all triplets in the array which sum of 0.
+e.g:
+Input:
+Array = [-1, -3, 5, 4]
+output:
+-1, -3, 4
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-15: https://careercup.com/question?id=20982670
+------------------------------------------------------------------------------------------------------------------------
+Given - a number (n) and a sorted array
+Find a number in the array having least difference with the given number (n).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-18: https://careercup.com/question?id=18824667
+------------------------------------------------------------------------------------------------------------------------
+You are given an array of 1's 2's and 3's. Sort this list so the 1's are first, the 2's come second, and the 3's come third.
+
+Ex: Input [1, 3, 3, 2, 1]
+Output [1, 1, 2, 3, 3]
+
+But there is a catch!! The algorithm must be one pass, which means no merge/quick sort. Also no extra list allocations are allowed, which means no bucket/radix/counting sorts.
+
+You are only permitted to swap elements.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 7-19: https://careercup.com/question?id=16760663
+------------------------------------------------------------------------------------------------------------------------
+Given an array, find all unique three-member subsets, with unique being that [0,2,3] and [3,2,0] are the same set. Should run in faster than 2^n time
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-10: https://careercup.com/question?id=15419952
+------------------------------------------------------------------------------------------------------------------------
+Given a hashmap M which is a mapping of characters to arrays of substitute characters, and an input string S, return an array of all possible mutations of S (where any character in S can be substituted with one of its substitutes in M, if it exists).
+
+What is the time complexity? What is the space complexity? Can you optimize either?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 8-11: https://careercup.com/question?id=15435963
+------------------------------------------------------------------------------------------------------------------------
+Given an array of real numbers A of length n, and some integer k such that 0 <= k < n, write a function that returns the kth largest number in A, where k=0 refers to the largest number.
+
+What is the time complexity? What is the space complexity? Can you optimize either?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 9-1: https://careercup.com/question?id=14947723
+------------------------------------------------------------------------------------------------------------------------
+Estimate the # of unique strings with limited memory
+Given a large array of strings S = [s1, s2, ... sN], determine Uniq(S) = how many unique strings there are in S.
+(b) How large can N be to solve on one machine using only memory?
+(c*) What if N is too large to fully fit in memory?
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 9-3: https://careercup.com/question?id=14921707
+------------------------------------------------------------------------------------------------------------------------
+You are given an array of N elements.arrange array in such a way that sum of any cunsucative k numbers are divisible
+by NUM.if not possible print -1.(it may possible that there are many solution possible then return any one)
+
+For example:
+N=6
+k=3
+NUM=63
+array={80,17,90,82,27,19}
+
+Answer:{19,17,27,82,80,90}
+any 3 cunsucative no. like (27+82+80)%63=0
+another solution={27,19,17,90,82,80}
+
+may be a hint :try to group all no.'s in mod NUM map and use vector and map.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 9-4: https://careercup.com/question?id=14874809
+------------------------------------------------------------------------------------------------------------------------
+You are given an array of integers. Find all the combinations of the numbers of the array, that sum to another number(might be different for different combination) from the array.
+One property of the array: The maximum number of the array will not be much greater than the others.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 9-5: https://careercup.com/question?id=14859694
+------------------------------------------------------------------------------------------------------------------------
+Given an array and a key, sum min subarray whose sum is no less than key. O(n) Time needed
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 9-9: https://careercup.com/question?id=14847690
+------------------------------------------------------------------------------------------------------------------------
+FInd the maximum sum of a sub-sequence from an positive integer array where any two numbers of sub-sequence are not adjacent to each other in the original sequence. E.g 1 2 3 4 5 6 --> 2 4 6
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-5: https://careercup.com/question?id=14582042
+------------------------------------------------------------------------------------------------------------------------
+range sum query，array，given i,j.
+get sum array[i,j]:
+
+requirement: n^1/2 space/time complexity
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-23: https://careercup.com/question?id=13228699
+------------------------------------------------------------------------------------------------------------------------
+Given a character array. Find if there exists a path from O to X. Here is an example
+. . . . . . .
+. . . . . . .
+w . . . . . .
+w .w.w..
+. . . . O . .
+. . w. . . .
+. . . X . . .
+
+You have to just keep in mind that you cannot go through 'W'.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 10-27: https://careercup.com/question?id=12986664
+------------------------------------------------------------------------------------------------------------------------
+Push all the zero's of a given array to the end of the array. In place only. Ex 1,2,0,4,0,0,8 becomes 1,2,4,8,0,0,0
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-2: https://careercup.com/question?id=12436663
+------------------------------------------------------------------------------------------------------------------------
+Given an unsorted array of integers, find a 3-element subset that sums to zero
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-10: https://careercup.com/question?id=10018885
+------------------------------------------------------------------------------------------------------------------------
+Given an array of size n, find all the possible sub set of the array of size k(all the subsets must be of size k).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-19: https://careercup.com/question?id=9332640
+------------------------------------------------------------------------------------------------------------------------
+Really like the linear solution of this problem. You have an array of 0s and 1s and you want to output all the intervals (i, j) where the number of 0s and numbers of 1s are equal.
+
+Example
+
+pos = 0 1 2 3 4 5 6 7 8
+0 1 0 0 1 1 1 1 0
+
+One interval is (0, 1) because there the number of 0 and 1 are equal. There are many other intervals, find all of them in linear time.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-21: https://careercup.com/question?id=9337669
+------------------------------------------------------------------------------------------------------------------------
+Find top log(n) or top sqt(n) values in an array of integers in less than linear time.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-22: https://careercup.com/question?id=9333968
+------------------------------------------------------------------------------------------------------------------------
+Given an array A of positive integers. Convert it to a sorted array with minimum cost. The only valid operation are:
+1) Decrement with cost = 1
+2) Delete an element completely from the array with cost = value of element
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 11-28: https://careercup.com/question?id=8674806
+------------------------------------------------------------------------------------------------------------------------
+Re-arrange an array containing only 0s,1s and 2s, so that all 1s follow all 0s and all 2s follow 1s. e.g. 00000011111111222222. Linear time algorithm.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-4: https://careercup.com/question?id=8105373
+------------------------------------------------------------------------------------------------------------------------
+Tell me all possible methods for removing duplicate elements from an array and sorted array....which one is the best according to you.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-5: https://careercup.com/question?id=7937661
+------------------------------------------------------------------------------------------------------------------------
+Write a c++ program to find the LCM of all the elements of an array.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-12: https://careercup.com/question?id=6305921
+------------------------------------------------------------------------------------------------------------------------
+Given a unordered array of numbers, remove the fewest number of numbers to produce the longest ordered sequence. Print count of fewest numbers to be removed, and the remaining sequence.
+For example, if input is 1 2 3 4 5 6 7 8 9 10, no (zero) numbers are removed, and input is the longest sequence.
+If input is, 1 2 3 8 10 5 6 7 12 9 4 0, then fewest number of elements to be removed is 5 is the fewest number to be removed, and the longest sequence is 1 2 3 5 6 7 12.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-14: https://careercup.com/question?id=6268663
+------------------------------------------------------------------------------------------------------------------------
+Print out all the subsets of an array
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-20: https://careercup.com/question?id=4447673
+------------------------------------------------------------------------------------------------------------------------
+Find 2 numbers in an integer array that sum to x. If found return true else false.
+1. simple solution is O(n2)
+2. Using certain data struct it can be improved to O(n) but you have to check for a special condition. what is that? Hint: if x = 4 and one of the values in the array is 2.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-25: https://careercup.com/question?id=4033979
+------------------------------------------------------------------------------------------------------------------------
+Input:
+Either an object array having integer, string and boolean, like
+{"abc", "ab,c", 10, true, false}
+Or a hash table like
+{"a1":"abc","t":true,"e":123}
+
+Output:
+If object array, output
+"abc"
+10
+true
+
+If hash, output
+"a1":"abc"
+"t" : true
+"e" : 123
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-26: https://careercup.com/question?id=3743299
+------------------------------------------------------------------------------------------------------------------------
+You bought a carpet of size n*n, and when you got home you found it has white spots, and black spots (You don't know if it's a white carper with black spots, or a black carpet with white spots). A spot is one or more of the n*n 'cells', or the same color, with either a common side or a common corner. The 'original color' is that of which there are more spots.
+for example:
+- if the carpet is all white, with a black circle in the middle, it's either black or white (as there is one white spot and one black spot)
+- if the carpet is all white with a black, side to side, stripe in the middle, the carpet is white (as there are two whites, and one black spot)
+- if it's a 'chessboard' pattern, it's again 1:1 (as each white has a common corner with another white...)
+
+write a function:
+
+int getOriginalColor(boolean[][])
+
+that would return 0 for white, 1 for black, 2 for tie
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-3: https://careercup.com/question?id=386151
+------------------------------------------------------------------------------------------------------------------------
+Write code for finding length of largest monotonically increasing sequence in an array of integers.
+Optimize it (not the usual O(n) in worst case, but a better approach in average case).
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-8: https://careercup.com/question?id=102744
+------------------------------------------------------------------------------------------------------------------------
+shuffle an array of size n such that each element has 1/n probability to remain in its original spot. The best solution has O(n) complexity.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-3: https://careercup.com/question?id=5697293959299072
+------------------------------------------------------------------------------------------------------------------------
+A robot has to move in a grid which is in the form of a matrix. It can go to
+1.) A(i,j)--> A(i+j,j) (Down)
+2.) A(i,j)--> A(i,i+j) (Right)
+
+Given it starts at (1,1) and it has to go to A(m,n), find the minimum number of STEPS it has to take to get to (m,n) and write
+public static int minSteps(int m,int n)
+
+For instance to go from (1,1) to m=3 and n=2 it has to take (1, 1) -> (1, 2) -> (3, 2) i.e. 2 steps
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 3-4: https://careercup.com/question?id=5768186823704576
+------------------------------------------------------------------------------------------------------------------------
+Given an m x n matrix where each row element is sorted, but the columns do not appear in sorted order, write a function to print each matrix element in sorted order.
+
+Example matrix:
+matrix = [
+[20, 40, 80],
+[5, 60, 90],
+[45, 50, 55]
+]
+
+Your function should print 5, 20, 40, 45, 50, 55, 60, 80, 90.
+
+Add on: Assume that we are space-constrained such that we can only hold one row in memory at a time. Optimize your function to work under such constraints as efficiently as possible.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-14: https://careercup.com/question?id=6299074475065344
+------------------------------------------------------------------------------------------------------------------------
+Given a matrix with 1's and 0's, a rectangle can be made with 1's. What is the maximum area of the rectangle.
+
+00010
+11100
+11110
+11000
+11010 In this test case the result needs to be 8.
+
+How:
+00010 00010
+11100 11 100
+11110 11 110
+11000 11 000
+11010 11 010
+
+If you see above the 11's are used from the first two columns and last four rows making the area or count of 1's to be 8.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-20: https://careercup.com/question?id=5890898499993600
+------------------------------------------------------------------------------------------------------------------------
+Given a matrix of letters and a word, check if the word is present in the matrix. E,g., suppose matrix is:
+a b c d e f
+z n a b c f
+f g f a b c
+and given word is fnz, it is present. However, gng is not since you would be repeating g twice.
+You can move in all the 8 directions around an element.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 5-21: https://careercup.com/question?id=5998719358992384
+------------------------------------------------------------------------------------------------------------------------
+Given a matrix consisting of 0's and 1's, find the largest connected component consisting of 1's.
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 12-26: https://careercup.com/question?id=3743299
+------------------------------------------------------------------------------------------------------------------------
+You bought a carpet of size n*n, and when you got home you found it has white spots, and black spots (You don't know if it's a white carper with black spots, or a black carpet with white spots). A spot is one or more of the n*n 'cells', or the same color, with either a common side or a common corner. The 'original color' is that of which there are more spots.
+for example:
+- if the carpet is all white, with a black circle in the middle, it's either black or white (as there is one white spot and one black spot)
+- if the carpet is all white with a black, side to side, stripe in the middle, the carpet is white (as there are two whites, and one black spot)
+- if it's a 'chessboard' pattern, it's again 1:1 (as each white has a common corner with another white...)
+
+write a function:
+
+int getOriginalColor(boolean[][])
+
+that would return 0 for white, 1 for black, 2 for tie
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+Question 13-13: https://careercup.com/question?id=83756
+------------------------------------------------------------------------------------------------------------------------
+Write a progam to rotate a matrix by 90 degrees.
+------------------------------------------------------------------------------------------------------------------------
+

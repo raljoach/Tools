@@ -12,6 +12,8 @@ using System.Drawing;
 using System.Collections.ObjectModel;
 using OpenQA.Selenium.Remote;
 using System.Threading;
+using InterviewsLib;
+using Newtonsoft.Json;
 
 namespace CareerCupToolkit
 {
@@ -695,67 +697,82 @@ namespace CareerCupToolkit
         }
 
         private static bool pause = true;
-        private static void DisplayQuestions(IWebDriver driver, string company, string topic, int pageStart = -1, int qStart = -1)
+        private static InterviewData DisplayQuestions(IWebDriver driver, string company, string topic, int pageStart = -1, int qStart = -1)
         {
+            var questions = new List<Question>();
+            var interviewData = new InterviewData(questions);
             var currentPage = 1;
             var pages = Search(driver, currentPage, company, topic, pageStart);
             foreach (var page in pages)
             {
-                Print(page.PageNumber, page.Result, qStart);
+                /*questions.AddRange(*/Print(interviewData, page.PageNumber, page.Result, company: company, topic: topic, qStart:qStart)/*)*/;
             }
+            //return new InterviewData(questions);
+            return interviewData;
         }
 
-        private static void DisplayQuestions(IWebDriver driver, string topic, int pageStart=-1)
+        private static InterviewData DisplayQuestions(IWebDriver driver, string topic, int pageStart=-1)
         {
+            var questions = new List<Question>();
+            var interviewData = new InterviewData(questions);
             var currentPage = 1;
             var pages = Search(driver, currentPage, pageStart, topic);
             foreach (var page in pages)
             {
-                Print(page.PageNumber, page.Result);
+                /*questions.AddRange(*/Print(interviewData, page.PageNumber, page.Result,company:null,topic:topic)/*)*/;
             }
+            //return new InterviewData(questions);
+            return interviewData;
         }
 
-        private static void DisplayQuestions(IWebDriver driver, Action setOptions, int pageStart=-1)
+        private static InterviewData DisplayQuestions(IWebDriver driver, Action setOptions, int pageStart=-1)
         {
-            /*using (var sw = new StreamWriter(new FileStream("error.log", FileMode.Truncate, FileAccess.Write)))
-            {
-            }*/
+            var questions = new List<Question>();
+            var interviewData = new InterviewData(questions);
             var currentPage = 1;
             var pages = Search(driver, currentPage, pageStart, setOptions);
             foreach (var page in pages)
             {
-                Print(page.PageNumber, page.Result);
+                /*questions.AddRange(*/Print(interviewData,page.PageNumber, page.Result, company:null, topic:null)/*)*/;
             }
+            //return new InterviewData(questions);
+            return interviewData;
         }
 
 
-        private static void Print(int pageNum, ReadOnlyCollection<IWebElement> questionsGrid, int qStart = -1)
+        private static void Print(InterviewData interviewData, int pageNum, ReadOnlyCollection<IWebElement> questionsGrid, string company, string topic, int qStart = -1)
         {
             //var links = new List<IWebElement>();
             var qNum = 0; // question<0?0:(question-1);
+            var questions = interviewData.Questions;//new List<Question>();
             foreach (var qElem in questionsGrid)
             {
                 ++qNum;
                 if (qStart > 0 && qNum < qStart) { continue; }
-                string link;
+                
                 try
                 {
-                    string question = ExtractQuestion(qElem, out link);
-                    if (string.IsNullOrWhiteSpace(question)) { continue; }
+                    var question = ExtractQuestion(qElem);
+                    if (question == null) { continue; }
                     var found = true;
                     if (keywords != null && keywords.Count > 0)
                     {
                         found = false;
                         foreach (var k in keywords)
                         {
-                            if (question.Contains(k))
+                            if (question.Text.Contains(k))
                             {
+                                question.Keywords = new List<string>();
+                                question.Keywords.Add(k);
                                 found = true;
                                 break;
                             }
                         }
                     }
                     if (!found) { continue; }
+                    question.Company = company;
+                    question.Topic = topic;
+                    questions.Add(question);
                     /*
                     Console.WriteLine("".PadLeft(Console.BufferWidth, '-'));
                     Console.WriteLine("Question {0}-{1}: {2}", pageNum, qNum, link);
@@ -767,9 +784,9 @@ namespace CareerCupToolkit
                     var sb = new StringBuilder();
                     var width = Console.WindowWidth;
                     sb.AppendLine("".PadLeft(width, '-'));
-                    sb.AppendLine(string.Format("Question {0}-{1}: {2}", pageNum, qNum, link));
+                    sb.AppendLine(string.Format("Question {0}-{1}: {2}", pageNum, qNum, question.Url));
                     sb.AppendLine("".PadLeft(width, '-'));
-                    sb.AppendLine(question);
+                    sb.AppendLine(question.Text);
                     sb.AppendLine("".PadLeft(width, '-'));
                     sb.AppendLine();
                     var output = sb.ToString();
@@ -777,6 +794,13 @@ namespace CareerCupToolkit
                     using (var sw = new StreamWriter(new FileStream("output.txt", FileMode.Append, FileAccess.Write)))
                     {
                         sw.Write(output);
+                        sw.Flush();
+                    }
+
+                    var json = JsonConvert.SerializeObject(interviewData);
+                    using (var sw = new StreamWriter(new FileStream("output.json", FileMode.Create, FileAccess.Write)))
+                    {
+                        sw.Write(json);
                         sw.Flush();
                     }
 
@@ -844,35 +868,53 @@ namespace CareerCupToolkit
                 }
             }
             //Console.WriteLine("No more questions");
+            //return questions;
         }
 
-        private static string ExtractQuestion(IWebElement qElem, out string url)
+        private static Question ExtractQuestion(IWebElement qElem)
         {
             var entry = qElem.FindElement(By.ClassName("entry"));
             var link = entry.FindElement(By.TagName("a"));
-            url = link.GetAttribute("href");
+            var url = link.GetAttribute("href");
             var pList = entry.FindElements(By.TagName("p"));
+            
+            string qText = null;
             if (pList == null || pList.Count == 0)
             {
                 Console.WriteLine("Error: No <p> found in anchor tag for question. Therefore the question may not have any text.");
                 Console.WriteLine("Let's try the text field for the anchor tag");
-                var text = link.Text;
-                if (string.IsNullOrWhiteSpace(text))
+                qText = link.Text;
+                if (string.IsNullOrWhiteSpace(qText))
                 {
                     Console.WriteLine("Error: No text found for link....So question will be skipped");
                     return null;
                 }
                 else
                 {
-                    return text;
+                    //return text;
                 }
             }
             else
             {
                 var p = pList[0];
-                var question = p.Text;
-                return question;
+                qText = p.Text;
+                //return text;
             }
+
+            List<string> tags = GetTags(qElem);
+            return new Question(qText, url, tags);
+        }
+
+        private static List<string> GetTags(IWebElement qElem)
+        {
+            var tElem = qElem.FindElement(By.ClassName("tags"));
+            var tags = new List<string>();
+            foreach (var a in tElem.FindElements(By.TagName("a")))
+            {
+                tags.Add(a.GetAttribute("text"));
+            }
+
+            return tags;
         }
 
         private static IEnumerable<PageResult> Search(IWebDriver driver, int currentPage, string company, string topic, int pageStart = -1)
